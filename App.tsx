@@ -1,20 +1,81 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { FIrstScreen } from './src/views/ContainerHome/FIrstScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SecondScreen from './src/views/ContainerHome/SecondScreen';
+import ThirdScreen from './src/views/ContainerHome/ThirdScreen';
+import Home from './src/views/Home/Home';
+import Register from './src/views/Acceder/Register';
+import Loading from './src/views/loading/Loading'
 
-export default function App() {
+
+export type RootStackParamsList = {
+  Loading: undefined,
+  FIrstScreen: undefined,
+  Martin: undefined,
+  Regresar: undefined,
+  Acceder: undefined,
+  Home: undefined,
+}
+const Stack = createNativeStackNavigator<RootStackParamsList>();
+
+
+const App = () => {
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      {/* <Stack.Navigator 
+        name="Loading"
+        component={Loading}
+      /> */}
+      <Stack.Navigator
+         screenOptions={{
+          headerShown: false
+        }}
+      >
+        <Stack.Screen 
+            name="FIrstScreen" 
+            component={FIrstScreen}
+        />
+        <Stack.Screen 
+            name='Martin'
+            component={SecondScreen}
+            options={{
+              headerShown: true, 
+            }}
+        />
+        <Stack.Screen 
+            name='Regresar'
+            component={ThirdScreen}
+            options={{
+              headerShown: true,          
+            }}
+        />
+        <Stack.Screen 
+           name='Acceder'
+           component={Register}  
+        />
+        <Stack.Screen 
+            name='Home'
+            component={Home}
+            options={{
+              headerShown: true,
+              
+            }}
+        />
+
+      </Stack.Navigator>
+
+    </NavigationContainer>
+  )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  back: {
+    backfaceVisibility: 'hidden',
+  }
+})
+
+export default App;
