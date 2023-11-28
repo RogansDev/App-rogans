@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { ViewComponent, View, Text, Image, StyleSheet } from "react-native";
 
 const Register = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.conatiner}>
       <Image
@@ -15,7 +18,7 @@ const Register = () => {
 const styles = StyleSheet.create({
   conatiner: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
     justifyContent: "center",
     alignItems: "center",
   },

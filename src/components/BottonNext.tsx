@@ -15,7 +15,7 @@ const BottonNext = ({text}: Props) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('Martin')}
+      onPress={() => navigation.navigate('SecondScreen')}
       style={styles.roundedBottom}
     >
        <Text style={styles.textBottom}>

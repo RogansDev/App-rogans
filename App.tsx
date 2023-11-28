@@ -13,7 +13,7 @@ import Loading from './src/views/loading/Loading'
 export type RootStackParamsList = {
   Loading: undefined,
   FIrstScreen: undefined,
-  Martin: undefined,
+  SecondScreen: undefined,
   Regresar: undefined,
   Acceder: undefined,
   Home: undefined,
@@ -40,7 +40,7 @@ const App = () => {
             component={FIrstScreen}
         />
         <Stack.Screen 
-            name='Martin'
+            name='SecondScreen'
             component={SecondScreen}
             options={{
               headerShown: true, 
@@ -67,7 +67,6 @@ const App = () => {
         />
 
       </Stack.Navigator>
-
     </NavigationContainer>
   )
 }

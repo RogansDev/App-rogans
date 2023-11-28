@@ -18,7 +18,7 @@ export const FIrstScreen = () => {
           Con Rogans, puedes acceder a servicios médicos en línea y obtener
           tratamientos personalizados para tus necesidades.
         </Text>
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 0 }}>
               <BottonNext
                 text="Siguiente"
                 
@@ -33,17 +33,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
+    position: "relative",
   },
   background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
     width: "100%",
     height: "100%",
+    resizeMode: "cover",
     opacity: 0.7,
+    zIndex: -1,
   },
   form: {
-    width: "100%",
-    height: "30%",
     position: "absolute",
     bottom: 0,
+    width: "100%",
     padding: 20,
   },
   titleform: {
@@ -58,9 +63,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     color: "white",
-    width: "95%",
-    position: "relative",
-    left: 20,
     lineHeight: 25,
   },
 });
+
+

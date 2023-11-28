@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
+    position: "relative",
   },
   background: {
     width: "100%",
@@ -36,10 +37,9 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   form: {
-    width: "100%",
-    height: "30%",
     position: "absolute",
-    bottom: 40,
+    bottom: 0,
+    width: "100%",
     padding: 20,
   },
   titleform: {
