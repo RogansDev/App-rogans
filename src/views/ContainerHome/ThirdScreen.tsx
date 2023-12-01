@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import BottonOpenTwo from "../../components/BottonOpenTwo";
 import { MyColors } from "../../theme/AppTheme";
-import BottonAcceder from "../../components/BottonAcceder";
+import BottonHome from "../../components/BottonHome";
 
 const ThirdScreen = () => {
   return (
@@ -18,7 +18,7 @@ const ThirdScreen = () => {
              para estar al tanto de tus <Text style={styles.parraText}>citas y tratamientos.</Text> 
         </Text>
         <View style={{ marginTop: 20 }}>
-          <BottonAcceder text="Siguiente" />
+          <BottonHome text="Siguiente" />
         </View>
       </View>
     </View>

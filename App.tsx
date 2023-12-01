@@ -6,8 +6,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SecondScreen from './src/views/ContainerHome/SecondScreen';
 import ThirdScreen from './src/views/ContainerHome/ThirdScreen';
 import Home from './src/views/Home/Home';
+import ConsultationList from './src/views/Consultas/ConsultationList';
 import Register from './src/views/Acceder/Register';
 import Loading from './src/views/loading/Loading'
+import ConsultationDescription from './src/views/Consultas/ConsultationDescription';
+import ConsultationConfirmation from './src/views/Consultas/ConsultationConfirmation';
+import ConfirmationPage from './src/views/Consultas/ConfirmationPage';
+import ProceduresList from './src/views/Procedimientos/ProceduresList';
+import ProcedureDescription from './src/views/Procedimientos/ProcedureDescription';
 
 
 export type RootStackParamsList = {
@@ -17,6 +23,12 @@ export type RootStackParamsList = {
   Regresar: undefined,
   Acceder: undefined,
   Home: undefined,
+  Consultas: undefined,
+  DescConsultas: undefined,
+  ConfirmConsultas: undefined,
+  Confirmation: undefined,
+  Procedimientos: undefined,
+  DescProcedimientos: undefined,
 }
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 
@@ -63,6 +75,53 @@ const App = () => {
             options={{
               headerShown: true,
               
+            }}
+        />
+        <Stack.Screen 
+            name='Consultas'
+            component={ConsultationList}
+            options={{
+              headerShown: true,
+              
+            }}
+        />
+        <Stack.Screen 
+            name='DescConsultas'
+            component={ConsultationDescription}
+            options={{
+              headerShown: true,
+              
+            }}
+        />
+        <Stack.Screen 
+            name='ConfirmConsultas'
+            component={ConsultationConfirmation}
+            options={{
+              headerShown: true,
+              
+            }}
+        />
+        <Stack.Screen 
+            name='Confirmation'
+            component={ConfirmationPage}
+            options={{
+              headerShown: true,
+              
+            }}
+        />
+        <Stack.Screen 
+            name='Procedimientos'
+            component={ProceduresList}
+            options={{
+              headerShown: true,
+              
+            }}
+        />
+        <Stack.Screen 
+            name='DescProcedimientos'
+            component={ProcedureDescription}
+            options={{
+              headerShown: true,
             }}
         />
 
