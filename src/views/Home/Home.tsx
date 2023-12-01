@@ -3,13 +3,20 @@ import { View, ScrollView, Text, Image, StyleSheet } from 'react-native';
 import { MyColors } from "../../theme/AppTheme";
 import FloatingMenu from '../../components/FloatingMenu';
 import ConsultCard from '../../components/ConsultCard';
+import ProcedureCard from '../../components/ProcedureCard';
 
 
 const Home = () => {
   const consultCards = [
-    { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes capilares' },
-    { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes capilares' },
-    { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes capilares' },
+    { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes\ncapilares' },
+    { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes\ncapilares' },
+    { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes\ncapilares' },
+  ];
+
+  const procedureCards = [
+    { image: require('../../../assets/botox.png'), title: 'Botox full face', price: '20.000' },
+    { image: require('../../../assets/botox.png'), title: 'Botox full face', price: '20.000' },
+    { image: require('../../../assets/botox.png'), title: 'Botox full face', price: '20.000' },
   ];
 
   return (
@@ -58,8 +65,20 @@ const Home = () => {
                   </Text>
                 </View>
             </View>
-            <View style={{marginBottom: 100}}>
+            <View style={{marginBottom: 50}}>
               <ConsultCard cards={consultCards} />
+            </View>
+            <View style={styles.section}>
+                <Text style={styles.titleSection}>Procedimientos{"\n"}para ti</Text>
+                <View style={styles.verMas}>
+                  <Image style={styles.iconVerMas} source={require("../../../assets/flecha.png")} />
+                  <Text style={styles.textVerMas}>
+                    Más procedimientos
+                  </Text>
+                </View>
+            </View>
+            <View style={{marginBottom: 100}}>
+              <ProcedureCard cards={procedureCards} />
             </View>
         </ScrollView>
     </View>
@@ -98,7 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
-    marginBottom: 20,
+    marginBottom: 30,
   },
   roundedBtn: {
     width: 100,
