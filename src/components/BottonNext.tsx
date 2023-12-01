@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, Text } from 'react-native' 
+import { TouchableOpacity, StyleSheet, Text, Image, View } from 'react-native' 
 import { MyColors } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -18,10 +18,15 @@ const BottonNext = ({text}: Props) => {
       onPress={() => navigation.navigate('Martin')}
       style={styles.roundedBottom}
     >
-       <Text style={styles.textBottom}>
-         {text}
-       </Text>
-
+      <View style={styles.contentNext}>
+        <Text style={styles.textBottom}>
+          {text}
+        </Text>
+        <Image 
+          source={require('../../assets/flecha.png')}
+          style={styles.icon}
+        />
+      </View>
     </TouchableOpacity>
   )
 }
@@ -34,6 +39,18 @@ const styles = StyleSheet.create({
     backgroundColor: MyColors.buttonColor,
     justifyContent: 'center',
     borderRadius: 15,
+  },
+  contentNext: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignSelf: "center",
+    justifyContent: 'center',
+    gap: 2,
+  },
+  icon: {
+    left: 10,
+    top: 8,
+    
   },
   textBottom: {
     color: 'black',

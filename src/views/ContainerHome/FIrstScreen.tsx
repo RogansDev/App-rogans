@@ -2,6 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, ToastAndroid, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import BottonNext from "../../components/BottonNext";
+import { MyColors } from "../../theme/AppTheme";
 
 
 export const FIrstScreen = () => {
@@ -13,16 +14,20 @@ export const FIrstScreen = () => {
     <View style={styles.container}>
       <Image source={require("../../../assets/Open1.png")} style={styles.background} />
       <View style={styles.form}>
-        <Text style={styles.titleform}>Bienvenidos a rogans</Text>
+        <Text style={styles.titleform}>Bienvenidos a rogans </Text>
         <Text style={styles.parraForm}>
-          Con Rogans, puedes acceder a servicios médicos en línea y obtener
-          tratamientos personalizados para tus necesidades.
+          Con Rogans, puedes acceder a <Text style={styles.textColor}>servicios médicos en línea</Text> y obtener
+          <Text style={styles.textColor}> tratamientos personalizados </Text> para tus necesidades.
         </Text>
         <View style={{ marginTop: 20 }}>
               <BottonNext
-                text="Siguiente"
-                
+                text="Siguiente" 
               />
+        </View>
+        <View style={styles.contentItems}>
+          <View style={styles.selectFirst}></View>
+          <View style={styles.selectSecond}></View>
+          <View style={styles.selectThird}></View>
         </View>
       </View>
     </View>
@@ -43,24 +48,52 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "30%",
     position: "absolute",
-    bottom: 0,
+    bottom: 60,
     padding: 20,
   },
   titleform: {
     fontSize: 30,
-    fontWeight: "bold",
     textAlign: "center",
     marginTop: 20,
     color: "white",
   },
   parraForm: {
-    fontSize: 15,
+    fontSize: 14,
     textAlign: "center",
     marginTop: 20,
     color: "white",
-    width: "95%",
+    width: 350,
     position: "relative",
-    left: 20,
-    lineHeight: 25,
+    right: 3,
+    lineHeight: 18,
   },
+  textColor: {
+    color: MyColors.primary,
+  },
+  contentItems: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignSelf: "center",
+    gap: 10,
+    marginTop: 28,
+  },
+  selectFirst: {
+    width: 50,
+    height: 10,
+    backgroundColor: MyColors.base,
+    borderRadius: 10,
+  },
+  selectSecond: {
+    width: 10,
+    height: 10,
+    backgroundColor: MyColors.gray,
+    borderRadius: 10,
+  },
+  selectThird: {
+    width: 10,
+    height: 10,
+    backgroundColor: MyColors.gray,
+    borderRadius: 10,
+  }
 });

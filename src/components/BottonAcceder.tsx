@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
 import { MyColors } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -18,7 +18,15 @@ const BottonAcceder = ({text}: Props) => {
        onPress={() => navigation.navigate("Acceder")}
        style={styles.roundedBottom}
     >
-        <Text style={styles.textBottom}>{text}</Text>
+        <View style={styles.contentNext}>
+        <Text style={styles.textBottom}>
+          {text}
+        </Text>
+        <Image 
+          source={require('../../assets/flecha.png')}
+          style={styles.icon}
+        />
+      </View>
     </TouchableOpacity>
   )
 }
@@ -36,6 +44,18 @@ const styles = StyleSheet.create({
         color: "black",
         fontWeight: "bold",
         fontSize: 20,
-    }
+    },
+    contentNext: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignSelf: "center",
+        justifyContent: 'center',
+        gap: 2,
+      },
+      icon: {
+        left: 10,
+        top: 8,
+        
+      },
 })
 export default BottonAcceder;

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import BottonOpenTwo from "../../components/BottonOpenTwo";
+import { MyColors } from "../../theme/AppTheme";
 
 const SecondScreen = () => {
   
@@ -14,11 +15,18 @@ const SecondScreen = () => {
       <View style={styles.form}>
         <Text style={styles.titleform}>Salud a tu alcance</Text>
         <Text style={styles.parraForm}>
-          Programa citas médicas en línea, realiza consultas virtuales con
-          especialistas, compra productos para tus tratamientos.
+           <Text style={styles.textColor}>Programa citas médicas en línea,</Text> realiza 
+           <Text style={styles.textColor}> consultas </Text>virtuales
+           <Text style={styles.textColor}> con especialistas,</Text> compra 
+           <Text style={styles.textColor}> productos para tus tratamientos.</Text>
         </Text>
         <View style={{ marginTop: 20 }}>
           <BottonOpenTwo text="Siguiente" />
+        </View>
+        <View style={styles.contentItems}>
+           <View style={styles.selectSecond}></View>
+           <View style={styles.selectFirst}></View>
+           <View style={styles.selectThird}></View>
         </View>
       </View>
     </View>
@@ -39,26 +47,54 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "30%",
     position: "absolute",
-    bottom: 40,
+    bottom: 65,
     padding: 20,
   },
   titleform: {
     fontSize: 30,
-    fontWeight: "bold",
     textAlign: "center",
     marginTop: 20,
     color: "white",
   },
   parraForm: {
-    fontSize: 15,
+    fontSize: 14,
     textAlign: "center",
     marginTop: 20,
     color: "white",
-    width: "95%",
+    width: 350,
     position: "relative",
-    left: 20,
-    lineHeight: 25,
+    right: 4,
+    lineHeight: 20,
   },
+  textColor: {
+    color: MyColors.primary,
+  },
+  contentItems: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignSelf: "center",
+    gap: 10,
+    marginTop: 28,
+  },
+  selectFirst: {
+    width: 50,
+    height: 10,
+    backgroundColor: MyColors.base,
+    borderRadius: 10,
+  },
+  selectSecond: {
+    width: 10,
+    height: 10,
+    backgroundColor: MyColors.gray,
+    borderRadius: 10,
+  },
+  selectThird: {
+    width: 10,
+    height: 10,
+    backgroundColor: MyColors.gray,
+    borderRadius: 10,
+  }
 });
 
 export default SecondScreen;
