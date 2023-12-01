@@ -1,140 +1,121 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
-import { FIrstScreen } from './src/views/ContainerHome/FIrstScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SecondScreen from './src/views/ContainerHome/SecondScreen';
-import ThirdScreen from './src/views/ContainerHome/ThirdScreen';
-import Home from './src/views/Home/Home';
-import ConsultationList from './src/views/Consultas/ConsultationList';
-import Register from './src/views/Acceder/Register';
-import Loading from './src/views/loading/Loading'
-import ConsultationDescription from './src/views/Consultas/ConsultationDescription';
-import ConsultationConfirmation from './src/views/Consultas/ConsultationConfirmation';
-import ConfirmationPage from './src/views/Consultas/ConfirmationPage';
-import ProceduresList from './src/views/Procedimientos/ProceduresList';
-import ProcedureDescription from './src/views/Procedimientos/ProcedureDescription';
-
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, Text, View } from "react-native";
+import { FIrstScreen } from "./src/views/ContainerHome/FIrstScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
+import SecondScreen from "./src/views/ContainerHome/SecondScreen";
+import ThirdScreen from "./src/views/ContainerHome/ThirdScreen";
+import Home from "./src/views/Home/Home";
+import Register from "./src/views/Acceder/Register";
+import Loading from "./src/views/loading/Loading";
+import { MyColors } from "./src/theme/AppTheme";
+import Acceder from "./src/views/Acceder/Acceder";
+import Login from "./src/views/Acceder/Login";
 
 export type RootStackParamsList = {
-  Loading: undefined,
-  FIrstScreen: undefined,
-  Martin: undefined,
-  Regresar: undefined,
-  Acceder: undefined,
-  Home: undefined,
-  Consultas: undefined,
-  DescConsultas: undefined,
-  ConfirmConsultas: undefined,
-  Confirmation: undefined,
-  Procedimientos: undefined,
-  DescProcedimientos: undefined,
-}
+  FIrstScreen: undefined;
+  Martin: undefined;
+  Regresar: undefined;
+  Acceder: undefined;
+  Home: undefined;
+  Login: undefined;
+};
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 
-
 const App = () => {
+  const [isAppReady, setAppReady] = useState(false);
+
+
 
 
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator 
-        name="Loading"
-        component={Loading}
-      /> */}
-      <Stack.Navigator
-         screenOptions={{
-          headerShown: false
-        }}
-      >
+      <Stack.Navigator>
+    
         <Stack.Screen 
-            name="FIrstScreen" 
-            component={FIrstScreen}
+           name="FIrstScreen" 
+           component={FIrstScreen} 
+           options={{
+             headerShown: false,
+           }}
+        />
+        <Stack.Screen
+          name="Martin"
+          component={SecondScreen}
+          options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Regresar',
+            headerTitleStyle: {
+              color: 'white',
+            },
+            headerTintColor: MyColors.primary,
+            
+          }}
+        />
+        <Stack.Screen
+          name="Regresar"
+          component={ThirdScreen}
+          options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Regresar',
+            headerTitleStyle: {
+              color: 'white',
+            },
+            headerTintColor: MyColors.primary,
+          }}
         />
         <Stack.Screen 
-            name='Martin'
-            component={SecondScreen}
-            options={{
-              headerShown: true, 
-            }}
+           name="Acceder" 
+           component={Acceder} 
+           options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Regresar',
+            headerTitleStyle: {
+              color: 'white',
+            },
+            headerTintColor: MyColors.primary,
+          }}
         />
         <Stack.Screen 
-            name='Regresar'
-            component={ThirdScreen}
-            options={{
-              headerShown: true,          
-            }}
+           name="Login" 
+           component={Login} 
+           options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Inicia sesion',
+            headerTitleStyle: {
+              color: 'black',
+            },
+            headerTintColor: MyColors.primary,
+            headerTitleAlign: 'center',
+          }}
         />
-        <Stack.Screen 
-           name='Acceder'
-           component={Register}  
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ /*  */
+            headerShown: true,
+            headerTitle: 'En Rogans',
+            headerTitleStyle: {
+              color: 'black',
+            },
+            headerTintColor: MyColors.primary,
+            
+          }}
         />
-        <Stack.Screen 
-            name='Home'
-            component={Home}
-            options={{
-              headerShown: true,
-              
-            }}
-        />
-        <Stack.Screen 
-            name='Consultas'
-            component={ConsultationList}
-            options={{
-              headerShown: true,
-              
-            }}
-        />
-        <Stack.Screen 
-            name='DescConsultas'
-            component={ConsultationDescription}
-            options={{
-              headerShown: true,
-              
-            }}
-        />
-        <Stack.Screen 
-            name='ConfirmConsultas'
-            component={ConsultationConfirmation}
-            options={{
-              headerShown: true,
-              
-            }}
-        />
-        <Stack.Screen 
-            name='Confirmation'
-            component={ConfirmationPage}
-            options={{
-              headerShown: true,
-              
-            }}
-        />
-        <Stack.Screen 
-            name='Procedimientos'
-            component={ProceduresList}
-            options={{
-              headerShown: true,
-              
-            }}
-        />
-        <Stack.Screen 
-            name='DescProcedimientos'
-            component={ProcedureDescription}
-            options={{
-              headerShown: true,
-            }}
-        />
-
       </Stack.Navigator>
-
     </NavigationContainer>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  back: {
-    backfaceVisibility: 'hidden',
-  }
-})
+  container: {
+    flex: 1,
+  },
+});
 
 export default App;

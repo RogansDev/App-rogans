@@ -18,7 +18,12 @@ const ThirdScreen = () => {
              para estar al tanto de tus <Text style={styles.parraText}>citas y tratamientos.</Text> 
         </Text>
         <View style={{ marginTop: 20 }}>
-          <BottonHome text="Siguiente" />
+          <BottonAcceder text="¡Comencemos!" />
+        </View>
+        <View style={styles.contentItems}>
+          <View style={styles.selectSecond}></View>
+          <View style={styles.selectThird}></View>
+          <View style={styles.selectFirst}></View>
         </View>
       </View>
     </View>
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
       width: "100%",
       height: "30%",
       position: "absolute",
-      bottom: 0,
+      bottom: 60,
       padding: 20,
     },
     titleform: {
@@ -56,11 +61,37 @@ const styles = StyleSheet.create({
       color: "white",
       width: "95%",
       position: "relative",
-      left: 20,
+      left: 8,
       lineHeight: 25,
     },
     parraText: {
         color: MyColors.primary
+    },
+    contentItems: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignSelf: "center",
+      gap: 10,
+      marginTop: 28,
+    },
+    selectFirst: {
+      width: 50,
+      height: 10,
+      backgroundColor: MyColors.base,
+      borderRadius: 10,
+    },
+    selectSecond: {
+      width: 10,
+      height: 10,
+      backgroundColor: MyColors.gray,
+      borderRadius: 10,
+    },
+    selectThird: {
+      width: 10,
+      height: 10,
+      backgroundColor: MyColors.gray,
+      borderRadius: 10,
     }
   });
   

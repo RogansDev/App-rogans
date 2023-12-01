@@ -1,13 +1,11 @@
 import React from "react";
 import { ViewComponent, View, Text, Image, StyleSheet } from "react-native";
+import LogoBlack from '../../../assets/logo-black.svg'
 
 const Register = () => {
   return (
     <View style={styles.conatiner}>
-      <Image
-        source={require("../../../assets/logo-black.svg")}
-        style={styles.logoBlack}
-      />
+      <LogoBlack style={styles.logoBlack} />
     </View>
   );
 };

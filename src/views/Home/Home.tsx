@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, ScrollView, Text, Image, StyleSheet } from 'react-native';
+import React from "react";
+import { View, ScrollView, Text, Image, StyleSheet } from "react-native";
 import { MyColors } from "../../theme/AppTheme";
 import FloatingMenu from '../../components/FloatingMenu';
 import ConsultCard from '../../components/ConsultCard';
@@ -21,19 +21,19 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-        <FloatingMenu />
-        <ScrollView>
-            <View style={styles.header}>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Hola Juanito</Text>
-                </View>
-                <View style={styles.iconContainer}>
-                    <Image
-                        source={require("../../../assets/user-icon.png")}
-                        style={styles.userIcon}
-                    />
-                </View>
-            </View>
+      <FloatingMenu />
+      <ScrollView>
+        <View style={styles.header}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Hola Juanito</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Image
+              source={require("../../../assets/user-icon.png")}
+              style={styles.userIcon}
+            />
+          </View>
+        </View>
 
             <View style={styles.containerRoundedBtn}>
               <View style={styles.roundedBtn}>
@@ -88,13 +88,13 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FCFCFC',
+    backgroundColor: "#FCFCFC",
     position: "relative",
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 16,
     paddingTop: 16,
     marginVertical: 30,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 33,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   iconContainer: {
     marginLeft: 16,
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     height: 27,
   },
   containerRoundedBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 16,
     marginBottom: 30,
   },
@@ -123,15 +123,15 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginRight: 10,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 100,
     // Sombras para Android
     elevation: 10,
     // Sombras para iOS
-    shadowColor: '#F0F0F0',
-    shadowOffset: { width: 4, height: 1},
+    shadowColor: "#F0F0F0",
+    shadowOffset: { width: 4, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 10,
   },
@@ -145,21 +145,21 @@ const styles = StyleSheet.create({
   },
   section: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 16,
     marginVertical: 20,
   },
   titleSection: {
     fontSize: 18,
     lineHeight: 20,
-    fontWeight: '500',
+    fontWeight: "500",
     color: MyColors.secondary,
   },
   // Estilos boton ver mas:
   verMas: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   iconVerMas: {
     marginRight: 10,
