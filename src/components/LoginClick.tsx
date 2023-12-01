@@ -4,6 +4,7 @@ import { MyColors } from '../theme/AppTheme';
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
+import Login from '../../assets/loginIniciar.svg'
 
 const LoginClick = () => {
 
@@ -16,10 +17,7 @@ const LoginClick = () => {
     >
        <View style={styles.flexBttom}>
           <Text style={styles.textBottom}>Iniciar sesion </Text>
-          <Image
-             source={require("../../assets/login.png")}
-             style={styles.logoLogin}
-          />
+          <Login width={20} height={20}  />
        </View>
     </TouchableOpacity>
   )

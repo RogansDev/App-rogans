@@ -6,6 +6,12 @@ import RegisterClick from "../../components/RegisterClick";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../../App";
+import LogoWhite from "../../../assets/logo-white.svg";
+import LineaWhite from "../../../assets/linea-white.svg";
+import Facebook from "../../../assets/facebook.svg";
+import Google from "../../../assets/Google.svg";
+import Apple from "../../../assets/Apple.svg";
+import Invitado from "../../../assets/invitado.svg";
 
 const Acceder = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
@@ -17,27 +23,24 @@ const Acceder = () => {
         style={styles.background}
       />
       <View style={styles.contend}>
-        <Image
-          source={require("../../../assets/logo-white.png")}
-          style={styles.logo}
-        />
+        <LogoWhite width={120} height={50} style={styles.logo} />
         <View style={styles.bottomGap}>
           <LoginClick />
           <RegisterClick />
         </View>
         <View style={styles.contentColum}>
           <View>
-            <Image source={require("../../../assets/linea.png")} />
+            <LineaWhite width={20} height={20} fill="white"/>
           </View>
           <View style={styles.redesSociales}>
-            <Image source={require("../../../assets/Facebook.png")} />
-            <Image source={require("../../../assets/Google.png")} />
-            <Image source={require("../../../assets/Apple.png")} />
+            <Facebook width={30} height={30} />
+            <Google width={30} height={30} />
+            <Apple width={30} height={30} />
           </View>
         </View>
         <View style={styles.invitadoPerfil}>
           <View style={styles.contendInvitado}>
-            <Image source={require("../../../assets/invitadp.png")} />
+            <Invitado width={20} height={20} />
             <Text
               style={styles.textInvitado}
               onPress={() => navigation.navigate("Home")}
@@ -74,7 +77,8 @@ const styles = StyleSheet.create({
   logo: {
     display: "flex",
     justifyContent: "center",
-    zIndex: 20,
+    width: 200,
+    height: 200,
   },
   bottomGap: {
     display: "flex",

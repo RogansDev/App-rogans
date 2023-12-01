@@ -4,6 +4,7 @@ import { MyColors } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
+import Arrow from '../../assets/arrow.svg';
 
 interface Props {
     text: string;
@@ -22,10 +23,7 @@ const BottonAcceder = ({text}: Props) => {
         <Text style={styles.textBottom}>
           {text}
         </Text>
-        <Image 
-          source={require('../../assets/flecha.png')}
-          style={styles.icon}
-        />
+        <Arrow width={20} height={20}  style={styles.icon}/>
       </View>
     </TouchableOpacity>
   )
@@ -54,8 +52,7 @@ const styles = StyleSheet.create({
       },
       icon: {
         left: 10,
-        top: 8,
-        
+        top: 6,  
       },
 })
 export default BottonAcceder;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
 import { MyColors } from '../theme/AppTheme';
+import SendIcon from '../../assets/send-2.svg';
 
 interface Props {
     text: string,
@@ -15,10 +16,7 @@ const BottomLogin = () => {
     >
        <View style={styles.flexBttom}>
           <Text style={styles.textBottom}>Iniciar sesion </Text>
-          <Image
-             source={require("../../assets/send-2.svg")}
-             style={styles.logoLogin}
-          />
+          <SendIcon width={20} height={20}  />
        </View>
     </TouchableOpacity>
   )
@@ -27,9 +25,10 @@ const BottomLogin = () => {
 
 const styles = StyleSheet.create({
     roundedBottom: {
-        width: 360,
-        height: 55,
-        alignItems: 'center',
+        width: 320,
+        height: 45,
+        display: 'flex',
+        alignSelf: 'center',
         backgroundColor: MyColors.black,
         justifyContent: 'center',
         borderRadius: 15,

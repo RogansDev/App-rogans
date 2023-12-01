@@ -1,14 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 import BottomLogin from "../../components/BottomLogin";
+import LogoBlack from '../../../assets/logo-black.svg';
+import Forget from '../../../assets/password-check.svg'
 
 const Login = () => {
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../../assets/logo-black.png")}
-        style={styles.background}
-      />
+      <LogoBlack  style={styles.background} />
       <View></View>
       <View style={styles.contentForm}>
         <View style={styles.form}>
@@ -35,6 +34,10 @@ const Login = () => {
           <View>
              <BottomLogin />
           </View>
+          <View style={styles.forget}>
+            <Forget width={20} height={20} />
+            <Text>Olvide mi contraseña</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -49,14 +52,14 @@ const styles = StyleSheet.create({
   background: {
     display: "flex",
     alignSelf: "center",
-    top: 150,
+    top: 110,
   },
   contentForm: {
     display: "flex",
     flexDirection: "column",
     alignSelf: "center",
     margin: 80,
-    top: 150,
+    top: 80,
   },
   form: {
     display: "flex",
@@ -88,6 +91,13 @@ const styles = StyleSheet.create({
   termsText: {
     marginLeft: 8,
   },
+  forget: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignSelf: "center",
+    gap: 10,
+  }
 });
 
 export default Login;

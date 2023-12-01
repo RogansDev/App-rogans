@@ -4,6 +4,7 @@ import { MyColors } from "../theme/AppTheme";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
+import Register from '../../assets/clickregister.svg'
 
 
 
@@ -18,10 +19,7 @@ const RegisterClick = () => {
     >
       <View style={styles.flexBttom}>
         <Text style={styles.textBottom}>Registrate</Text>
-        <Image 
-           source={require("../../assets/register.png")}
-           style={styles.logoRegister}
-        />
+        <Register width={20} height={20}  />
       </View>
     </TouchableOpacity>
   );
