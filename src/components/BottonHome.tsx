@@ -5,15 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
 
-
 interface Props {
-    text: string,
-  }
-  
-  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
-
+  text: string,
+}
 
 const BottonHome = ({text}: Props) => {
+  
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
     return (
         <TouchableOpacity
           onPress={() => navigation.navigate("Home")}
