@@ -13,6 +13,7 @@
 11. react-native-screens //instalar esta dependecia para el navigation
 12. react-native-slick //instalar esta dependecia para el slider
 13. react-native-webview //instalar esta dependecia para el webview calendly
+14. expo-font // instalar esta dependencia para Expo Fonts (Fuentes personalizadas)
 
 
 
@@ -23,4 +24,33 @@ instalar esta dependecia para calendly
 
 
 npm install --save react-calendly
+
+
+<h1>Uso de las fuentes personalizadas<h1>
+
+En la carpeta ./assets/fonts/poppins se encuantran los archivos .ttf de la fuente usada en la App.
+
+En el archivo ./src/theme/AppTheme.tsx se encuentran los estilos generales de la App, las fuentes estan configuradas en un objeto llamado MyFont, este objeto cuenta con cuatro propiedades: light, regular, medium y bold las cuales representan los grosores de la fuente (300, 400, 500 y 600 respectivamente).
+
+Para usarlo es necesario con impotar la dependencia MyFont de AppTheme.tsx, ejemplo:
+
+<code>
+import { MyFont } from "../../theme/AppTheme";
+</code>
+
+Luego aplicar el estilo de la siguiente forma:
+
+<code>
+estiloParaText: {
+        fontSize: 13,
+        fontFamily: MyFont.regular,
+        color: 'white',
+    },
+</code>
+
+o
+
+<code>
+<Text style={{fontFamily: MyFont.regular}}>Continuar</Text>
+</code>
 
