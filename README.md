@@ -28,9 +28,11 @@ npm install --save react-calendly
 
 <h1>Uso de las fuentes personalizadas</h1>
 
-En la carpeta ./assets/fonts/poppins se encuantran los archivos .ttf de la fuente usada en la App.
+En la carpeta ./assets/fonts/poppins se encuentran los archivos .ttf de la fuente usada en la App.
 
 En el archivo ./src/theme/AppTheme.tsx se encuentran los estilos generales de la App, las fuentes estan configuradas en un objeto llamado MyFont, este objeto cuenta con cuatro propiedades: light, regular, medium y bold las cuales representan los grosores de la fuente (300, 400, 500 y 600 respectivamente).
+
+¡¡¡Es importante recordar que el uso de fuentes perzonalizadar no permite el uso de la propiedad y estilo FontWeight, por lomimso se debe recurrir al uso de las propiedade del objeto MyFont: light, regular, medium y bold!!!
 
 Para usarlo es necesario con impotar la dependencia MyFont de AppTheme.tsx, ejemplo:
 
