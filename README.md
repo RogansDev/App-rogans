@@ -17,9 +17,15 @@
 
 
 instalar esta dependecia para calendly
+
+
 npm install --save react-calendly
 
+
+
 Para instalar la dependecia expo-font usar:
+
+
 <code>expo install expo-font</code>
 
 
