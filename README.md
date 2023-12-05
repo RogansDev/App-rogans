@@ -26,7 +26,7 @@ instalar esta dependecia para calendly
 npm install --save react-calendly
 
 
-<h1>Uso de las fuentes personalizadas<h1>
+<h1>Uso de las fuentes personalizadas</h1>
 
 En la carpeta ./assets/fonts/poppins se encuantran los archivos .ttf de la fuente usada en la App.
 
