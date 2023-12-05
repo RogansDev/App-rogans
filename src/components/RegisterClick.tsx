@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { MyColors } from "../theme/AppTheme";
+import { MyColors, MyFont } from "../theme/AppTheme";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   flexBttom: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -43,10 +42,8 @@ const styles = StyleSheet.create({
   },
   textBottom: {
     color: "white",
-    fontWeight: "bold",
     fontSize: 15,
-    lineHeight: 40,
-    bottom: 4,
+    fontFamily: MyFont.regular,
   },
   logoRegister: {
     width: 20,

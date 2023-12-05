@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-const Rating = ({ initialRating = 0, onRatingPress }) => {
+const Rating = ({ initialRating = 0, onRatingPress }: any) => {
   const [rating, setRating] = useState(initialRating);
 
-  const handleRatingPress = (selectedRating) => {
+  const handleRatingPress = (selectedRating: number) => {
     setRating(selectedRating);
     if (onRatingPress) {
       onRatingPress(selectedRating);

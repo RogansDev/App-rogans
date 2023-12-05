@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, ToastAndroid, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import BottonNext from "../../components/BottonNext";
-import { MyColors } from "../../theme/AppTheme";
+import { MyColors, MyFont } from "../../theme/AppTheme";
 
 
 export const FIrstScreen = () => {
@@ -38,27 +38,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
+    position: 'relative',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   background: {
+    position: 'absolute',
     width: "100%",
     height: "100%",
     opacity: 0.7,
+    zIndex: 1,
   },
   form: {
-    width: "100%",
-    height: "30%",
-    position: "absolute",
-    bottom: 60,
+    position: "relative",
     padding: 20,
+    zIndex: 10,
   },
   titleform: {
     fontSize: 30,
+    fontFamily: MyFont.bold,
     textAlign: "center",
     marginTop: 20,
     color: "white",
   },
   parraForm: {
     fontSize: 14,
+    fontFamily: MyFont.regular,
     textAlign: "center",
     marginTop: 20,
     color: "white",

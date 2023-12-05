@@ -1,4 +1,5 @@
 import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import { MyColors, MyFont } from '../theme/AppTheme';
 
 const FloatingMenu = () => {
   const menuItems = [
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontSize: 14,
+    fontFamily: MyFont.regular,
   },
 });
 

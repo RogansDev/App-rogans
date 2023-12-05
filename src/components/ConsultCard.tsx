@@ -1,18 +1,24 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, ImageSourcePropType } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../App';
+import { MyFont } from "../theme/AppTheme";
 
-const ConsultCard = ({cards}) => {
+const ConsultCard = ({cards}: any) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
   return (
     <ScrollView horizontal style={styles.cardContainer} showsHorizontalScrollIndicator={false}>
-      {cards.map((card, index) => (
+      {cards.map((card: { category: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; image: ImageSourcePropType; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
         <View key={index} style={styles.card}>
           <Text style={styles.cardCategory}>{card.category}</Text>
           <Image source={card.image} style={styles.cardImage} />
           <Text style={styles.cardText}>{card.title}</Text>
-          <View style={styles.agendarBtn}>
+          <TouchableOpacity onPress={() => navigation.navigate("DescripcionConsultas")} style={styles.agendarBtn}>
             <Text style={styles.textAgendarBtn}>Agendar cita</Text>
             <Image source={require('../../assets/agendar.png')} style={styles.iconAgendarBtn} />
-          </View>
+          </TouchableOpacity>
         </View>
       ))}
     </ScrollView>
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     fontSize: 13,
-    fontWeight: '400',
+    fontFamily: MyFont.regular,
     color: 'white',
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
     borderRadius: 14,
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
     width: '88%',
     marginBottom: 10,
     fontSize: 18,
-    fontWeight: '500',
+    fontFamily: MyFont.medium,
     color: 'white',
     textAlign: 'left',
     zIndex: 10,
@@ -79,7 +85,7 @@ const styles = StyleSheet.create({
   },
   textAgendarBtn: {
     fontSize: 13,
-    fontWeight: '400',
+    fontFamily: MyFont.regular,
     color: 'black',
   },
   iconAgendarBtn: {

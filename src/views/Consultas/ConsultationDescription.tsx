@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import { MyColors } from "../../theme/AppTheme";
+import { MyColors, MyFont } from "../../theme/AppTheme";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../App';
 import FloatingMenu from '../../components/FloatingMenu';
 
 const ConsultationDescription = () => {
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+    
     const consultationContent = {
         image: require('../../../assets/implante2.png'),
         title: 'Trasplante capilar',
@@ -75,7 +80,7 @@ const ConsultationDescription = () => {
                             <Image source={require('../../../assets/icon-calendar-add.png')} style={styles.imageModalButton} />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity onPress={() => navigation.navigate("ConfirmacionConsulta")} style={styles.button}>
                         <Text style={styles.textButtom}>Continuar</Text>
                         <Image source={require('../../../assets/flecha-blanca.png')} />
                     </TouchableOpacity>
@@ -112,32 +117,32 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 33,
-      fontWeight: '600',
+      fontFamily: MyFont.bold,
       color: 'black',
       marginTop: 50,
       marginBottom: 15,
     },
     oldPrice: {
         fontSize: 13,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: '#909090',
         textDecorationLine: 'line-through'
     },
     price: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: '#404040',
     },
     description: {
         fontSize: 12,
-        fontWeight: '400',
+        fontFamily: MyFont.medium,
         color: '#909090',
         marginTop: 30,
         marginBottom: 70,
     },
     title2: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: 'black',
         marginBottom: 20,
     },
@@ -152,7 +157,7 @@ const styles = StyleSheet.create({
     },
     textButtom: {
         fontSize: 13,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: 'white',
         marginRight: 5,
     },
@@ -167,10 +172,12 @@ const styles = StyleSheet.create({
     },
     text1TitleModalButton: {
         fontSize: 11,
+        fontFamily: MyFont.regular,
         color: '#404040',
     },
     text2TitleModalButton: {
         fontSize: 10,
+        fontFamily: MyFont.regular,
         color: '#C0C0C0',
     },
     modalButton: {
@@ -186,6 +193,7 @@ const styles = StyleSheet.create({
     },
     textModalButton: {
         fontSize: 13,
+        fontFamily: MyFont.regular,
     },
     imageModalButton: {
 

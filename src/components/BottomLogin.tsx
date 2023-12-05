@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
-import { MyColors } from '../theme/AppTheme';
+import { MyColors, MyFont } from '../theme/AppTheme';
 import SendIcon from '../../assets/send-2.svg';
 
 interface Props {
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     textBottom: {
         color: 'white',
         fontSize: 20,
+        fontFamily: MyFont.regular,
     },
     logoLogin: {
         width: 20,

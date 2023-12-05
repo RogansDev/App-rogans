@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import { MyColors, MyFont } from "../../theme/AppTheme";
 import Rating from '../../components/Rating';
 
 const ProcedureDescription = () => {
@@ -16,7 +17,7 @@ const ProcedureDescription = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState(null);
 
-    const handleRatingPress = (selectedRating) => {
+    const handleRatingPress = (selectedRating: any) => {
         console.log('Selected Rating:', selectedRating);
     };   
 
@@ -80,32 +81,32 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 33,
-      fontWeight: '600',
+      fontFamily: MyFont.bold,
       color: 'black',
       marginTop: 50,
       marginBottom: 3,
     },
     oldPrice: {
         fontSize: 13,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: '#909090',
         textDecorationLine: 'line-through'
     },
     price: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: '#404040',
     },
     description: {
         fontSize: 12,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: '#909090',
         marginTop: 30,
         marginBottom: 70,
     },
     title2: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: 'black',
         marginBottom: 20,
     },
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     },
     textButtom: {
         fontSize: 13,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: 'white',
         marginRight: 5,
     },
@@ -154,6 +155,7 @@ const styles = StyleSheet.create({
     },
     textModalButton: {
         fontSize: 13,
+        fontFamily: MyFont.regular,
     },
     imageModalButton: {
 

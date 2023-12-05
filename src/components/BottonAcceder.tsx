@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
-import { MyColors } from '../theme/AppTheme';
+import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     },
     textBottom: {
         color: "black",
-        fontWeight: "bold",
         fontSize: 20,
+        fontFamily: MyFont.regular,
     },
     contentNext: {
         display: 'flex',

@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
-import { MyColors } from "../../theme/AppTheme";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../App';
+import { MyColors, MyFont } from "../../theme/AppTheme";
 
 const ConsultationDescription = () => {
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
     const consultationContent = {
         image: require('../../../assets/implante2.png'),
         titleConsulta: 'Consulta capilar',
@@ -91,7 +96,7 @@ const ConsultationDescription = () => {
                             <Text style={styles.price}>Gratis</Text>
                             <Text style={styles.consulta}>Consulta capilar</Text>
                         </View>
-                        <TouchableOpacity style={styles.agendarBtn}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Confirmado")} style={styles.agendarBtn}>
                             <Text style={styles.textAgendarBtn}>Agendar</Text>
                             <Image source={require('../../../assets/calendar-2.png')} style={styles.iconAgendarBtn} />
                         </TouchableOpacity>
@@ -113,7 +118,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: '600',
+        fontFamily: MyFont.bold,
         color: 'black',
         marginTop: 20,
         paddingHorizontal: 16,
@@ -136,7 +141,7 @@ const styles = StyleSheet.create({
     },
     title2: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: 'black',
         marginBottom: 14,
     },
@@ -145,7 +150,7 @@ const styles = StyleSheet.create({
     },
     consultationType: {
         fontSize: 14,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: '#404040',
     },
     textContainer: {
@@ -169,12 +174,12 @@ const styles = StyleSheet.create({
     },
     titleInfo: {
         fontSize: 14,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: 'black',
     },
     textInfo: {
         fontSize: 12,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: '#404040',
     },
     accordionItemContainer: {
@@ -205,16 +210,16 @@ const styles = StyleSheet.create({
     },
     titleAccordion: {
         fontSize: 12,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
     },
     iconAccordion: {
         fontSize: 24,
-        fontWeight: '300',
+        fontFamily: MyFont.light,
         lineHeight: 24,
     },
     contentAccordion: {
         fontSize: 12,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: '#909090',
         padding: 12,
         backgroundColor: 'white',
@@ -226,13 +231,13 @@ const styles = StyleSheet.create({
     },
     price: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         color: '#404040',
         marginBottom: 4,
     },
     consulta: {
         fontSize: 13,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: '#404040',
     },
     agendarBtn: {
@@ -246,7 +251,7 @@ const styles = StyleSheet.create({
     },
     textAgendarBtn: {
         fontSize: 13,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: 'white',
     },
     iconAgendarBtn: {

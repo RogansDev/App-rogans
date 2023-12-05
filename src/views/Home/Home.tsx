@@ -1,12 +1,20 @@
 import React from "react";
-import { View, ScrollView, Text, Image, StyleSheet } from "react-native";
-import { MyColors } from "../../theme/AppTheme";
+import { View, ScrollView, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { MyColors, MyFont } from "../../theme/AppTheme";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../App';
 import FloatingMenu from '../../components/FloatingMenu';
 import ConsultCard from '../../components/ConsultCard';
 import ProcedureCard from '../../components/ProcedureCard';
+import ButtonConsultationList from '../../components/BottomMasConsultas';
+import ButtonProcedureList from '../../components/BottomMasProcedimientos';
+import Arrow from '../../../assets/arrow.svg'
 
 
 const Home = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
   const consultCards = [
     { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes\ncapilares' },
     { category: 'Capilar', image: require('../../../assets/implante.png'), title: 'Implantes\ncapilares' },
@@ -36,46 +44,36 @@ const Home = () => {
         </View>
 
             <View style={styles.containerRoundedBtn}>
-              <View style={styles.roundedBtn}>
+              <TouchableOpacity onPress={() => navigation.navigate("ListaDeProcedimientos")} style={styles.roundedBtn}>
                   <Image style={styles.iconRoundedBtn} source={require("../../../assets/procedimientos.png")} />
                   <Text style={styles.textRoundedBtn}>
                     Procedimientos
                   </Text>
-              </View>
-              <View style={styles.roundedBtn}>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("ListaDeConsultas")} style={styles.roundedBtn}>
                   <Image style={styles.iconRoundedBtn} source={require("../../../assets/consultas.png")} />
                   <Text style={styles.textRoundedBtn}>
                     Consultas
                   </Text>
-              </View>
-              <View style={styles.roundedBtn}>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.roundedBtn}>
                   <Image style={styles.iconRoundedBtn} source={require("../../../assets/agenda.png")} />
                   <Text style={styles.textRoundedBtn}>
                     Mi Agenda
                   </Text>
-              </View>
+              </TouchableOpacity>
             </View>
             
             <View style={styles.section}>
                 <Text style={styles.titleSection}>Consultas{"\n"}para ti</Text>
-                <View style={styles.verMas}>
-                  <Image style={styles.iconVerMas} source={require("../../../assets/flecha.png")} />
-                  <Text style={styles.textVerMas}>
-                    Encuentra más
-                  </Text>
-                </View>
+                <ButtonConsultationList />
             </View>
             <View style={{marginBottom: 50}}>
               <ConsultCard cards={consultCards} />
             </View>
             <View style={styles.section}>
                 <Text style={styles.titleSection}>Procedimientos{"\n"}para ti</Text>
-                <View style={styles.verMas}>
-                  <Image style={styles.iconVerMas} source={require("../../../assets/flecha.png")} />
-                  <Text style={styles.textVerMas}>
-                    Más procedimientos
-                  </Text>
-                </View>
+                <ButtonProcedureList />
             </View>
             <View style={{marginBottom: 100}}>
               <ProcedureCard cards={procedureCards} />
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingTop: 16,
+    paddingTop: 30,
     marginVertical: 30,
   },
   titleContainer: {
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 33,
-    fontWeight: "bold",
+    fontFamily: MyFont.bold,
   },
   iconContainer: {
     marginLeft: 16,
@@ -142,6 +140,7 @@ const styles = StyleSheet.create({
   },
   textRoundedBtn: {
     fontSize: 9.7,
+    fontFamily: MyFont.regular,
   },
   section: {
     flex: 1,
@@ -154,18 +153,8 @@ const styles = StyleSheet.create({
   titleSection: {
     fontSize: 18,
     lineHeight: 20,
-    fontWeight: "500",
+    fontFamily: MyFont.medium,
     color: MyColors.secondary,
-  },
-  // Estilos boton ver mas:
-  verMas: {
-    flexDirection: "row",
-  },
-  iconVerMas: {
-    marginRight: 10,
-  },
-  textVerMas: {
-    paddingRight: 12,
   },
 });
 

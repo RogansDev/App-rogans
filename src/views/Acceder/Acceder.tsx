@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { MyColors } from "../../theme/AppTheme";
+import { MyColors, MyFont } from "../../theme/AppTheme";
 import LoginClick from "../../components/LoginClick";
 import RegisterClick from "../../components/RegisterClick";
 import { useNavigation } from "@react-navigation/native";
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
   textInvitado: {
     color: "white",
     fontSize: 20,
+    fontFamily: MyFont.regular,
   },
 });
 export default Acceder;

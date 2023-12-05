@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import BottonOpenTwo from "../../components/BottonOpenTwo";
-import { MyColors } from "../../theme/AppTheme";
-import BottonHome from "../../components/BottonHome";
+import { MyColors, MyFont } from "../../theme/AppTheme";
+import BottonAcceder from "../../components/BottonAcceder";
 
 const ThirdScreen = () => {
   return (
@@ -34,28 +34,32 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "black",
+      position: 'relative',
+      justifyContent: 'flex-end',
+      alignItems: 'center',
     },
     background: {
+      position: 'absolute',
       width: "100%",
       height: "100%",
       opacity: 0.7,
     },
     form: {
-      width: "100%",
-      height: "30%",
-      position: "absolute",
-      bottom: 60,
+      position: "relative",
+      width: '100%',
       padding: 20,
+      zIndex: 10,
     },
     titleform: {
       fontSize: 30,
-      fontWeight: "bold",
+      fontFamily: MyFont.bold,
       textAlign: "center",
       marginTop: 20,
       color: "white",
     },
     parraForm: {
       fontSize: 15,
+      fontFamily: MyFont.regular,
       textAlign: "center",
       marginTop: 20,
       color: "white",

@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, ScrollView, Text, Image, StyleSheet } from 'react-native';
-import { MyColors } from "../../theme/AppTheme";
+import { View, ScrollView, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { MyColors, MyFont } from "../../theme/AppTheme";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../App';
 import FloatingMenu from '../../components/FloatingMenu';
 
 
 const Cosultationlist = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
   const ConsultationItems = [
     { image: require('../../../assets/implante2.png'), title: 'Trasplante capilar' },
     { image: require('../../../assets/implante2.png'), title: 'Trasplante capilar' },
@@ -24,12 +29,12 @@ const Cosultationlist = () => {
                   <Image source={item.image} style={styles.consultationImage} />
                   <View style={styles.consultationInfo}>
                     <Text style={styles.consultationTitle}>{item.title}</Text>
-                    <View style={styles.agendarBtn}>
+                    <TouchableOpacity onPress={() => navigation.navigate("DescripcionConsultas")} style={styles.agendarBtn}>
                       <Image style={styles.iconAgendarBtn} source={require("../../../assets/icon-calendar.png")} />
                       <Text style={styles.textAgendarBtn}>
                         Agendar
                       </Text>
-                    </View>
+                    </TouchableOpacity>
                   </View>
               </View>
             ))}
@@ -47,7 +52,7 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 18,
-      fontWeight: '500',
+      fontFamily: MyFont.medium,
       color: MyColors.secondary,
       marginTop: 30,
       marginBottom: 15,
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
 
     consultationTitle: {
       fontSize: 18,
-      fontWeight: '500',
+      fontFamily: MyFont.medium,
       color: '#404040',
       marginBottom: 30,
     },
@@ -94,7 +99,7 @@ const styles = StyleSheet.create({
     },
     textAgendarBtn: {
       fontSize: 13,
-      fontWeight: '400',
+      fontFamily: MyFont.regular,
     },
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
+import { MyFont } from "../../theme/AppTheme";
 
 const ConfirmationPage = () => {
     return (
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: MyFont.medium,
         textAlign: 'center',
         marginVertical: 30,
     },
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     },
     textBtn: {
         fontSize: 13,
-        fontWeight: '400',
+        fontFamily: MyFont.regular,
         color: 'white',
     },
     iconBtn: {

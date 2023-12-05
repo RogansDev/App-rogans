@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import BottonOpenTwo from "../../components/BottonOpenTwo";
-import { MyColors } from "../../theme/AppTheme";
+import { MyColors, MyFont } from "../../theme/AppTheme";
 
 const SecondScreen = () => {
   
@@ -37,27 +37,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
+    position: 'relative',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   background: {
+    position: "absolute",
     width: "100%",
     height: "100%",
     opacity: 0.7,
   },
   form: {
-    width: "100%",
-    height: "30%",
-    position: "absolute",
-    bottom: 65,
+    position: "relative",
     padding: 20,
+    zIndex: 10,
   },
   titleform: {
     fontSize: 30,
+    fontFamily: MyFont.bold,
     textAlign: "center",
     marginTop: 20,
     color: "white",
   },
   parraForm: {
     fontSize: 14,
+    fontFamily: MyFont.regular,
     textAlign: "center",
     marginTop: 20,
     color: "white",

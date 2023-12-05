@@ -1,21 +1,26 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, ImageSourcePropType } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../App';
+import { MyFont } from "../theme/AppTheme";
 
-const ConsultCard = ({ cards }) => {
+const ConsultCard = ({ cards }: any) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
   return (
     <ScrollView horizontal style={styles.cardContainer} showsHorizontalScrollIndicator={false}>
-      {cards.map((card, index) => (
+      {cards.map((card: { image: ImageSourcePropType; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; price: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
         <View key={index} style={styles.card}>
           <Image source={card.image} style={styles.cardImage} />
           <Text style={styles.cardTitle}>{card.title}</Text>
           <View style={styles.cardInfo}>
             <Text style={styles.cardPrice}>${card.price}</Text>
-            <View style={styles.comprarBtn}>
-              <Image style={styles.iconComprarBtn} source={require("../../assets/flecha.png")} />
+            <TouchableOpacity onPress={() => navigation.navigate("DescripcionProcedimientos")} style={styles.comprarBtn}>
               <Text style={styles.textComprarBtn}>
                 Comprar
               </Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       ))}
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     position: 'relative',
     fontSize: 14,
-    fontWeight: '500',
+    fontFamily: MyFont.medium,
     color: 'black',
     textAlign: 'left',
     marginTop: 14,
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
   },
   cardPrice: {
     fontSize: 13,
-    fontWeight: '400',
+    fontFamily: MyFont.regular,
     color: '#404040',
     textAlign: 'left',
   },
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
   },
   textComprarBtn: {
     fontSize: 13,
-    fontWeight: '400',
+    fontFamily: MyFont.regular,
   },
 });
 

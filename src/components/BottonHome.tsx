@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text } from 'react-native' 
-import { MyColors } from '../theme/AppTheme';
+import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
@@ -36,6 +36,7 @@ const BottonHome = ({text}: Props) => {
         color: "black",
         fontWeight: "bold",
         fontSize: 20,
+        fontFamily: MyFont.regular,
       },
     });
     
