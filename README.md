@@ -34,23 +34,17 @@ En el archivo ./src/theme/AppTheme.tsx se encuentran los estilos generales de la
 
 Para usarlo es necesario con impotar la dependencia MyFont de AppTheme.tsx, ejemplo:
 
-<code>
-import { MyFont } from "../../theme/AppTheme";
-</code>
+<code>import { MyFont } from "../../theme/AppTheme";</code>
 
 Luego aplicar el estilo de la siguiente forma:
 
-<code>
-estiloParaText: {
+<code>estiloParaText: {
         fontSize: 13,
         fontFamily: MyFont.regular,
         color: 'white',
-    },
-</code>
+    },</code>
 
 o
 
-<code>
-<Text style={{fontFamily: MyFont.regular}}>Continuar</Text>
-</code>
+<code><Text style={{fontFamily: MyFont.regular}}>Continuar</Text></code>
 
