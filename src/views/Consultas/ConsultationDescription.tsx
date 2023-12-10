@@ -187,8 +187,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#909090',
         borderRadius: 10,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 10,        paddingHorizontal: 20,
         marginVertical: 10,
     },
     textModalButton: {

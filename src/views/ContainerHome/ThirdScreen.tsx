@@ -8,7 +8,7 @@ const ThirdScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../../assets/Open2.png")}
+        source={require("../../../assets/doctores-third.png")}
         style={styles.background}
       />
       <View style={styles.form}>

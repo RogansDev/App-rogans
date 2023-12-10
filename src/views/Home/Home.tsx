@@ -42,7 +42,7 @@ const Home = () => {
             />
           </View>
         </View>
-
+            {/* ICONOS DE HEADER */}
             <View style={styles.containerRoundedBtn}>
               <TouchableOpacity onPress={() => navigation.navigate("ListaDeProcedimientos")} style={styles.roundedBtn}>
                   <Image style={styles.iconRoundedBtn} source={require("../../../assets/procedimientos.png")} />
@@ -63,11 +63,12 @@ const Home = () => {
                   </Text>
               </TouchableOpacity>
             </View>
-            
+            {/* texto de consultas y botton de mas consultas */}
             <View style={styles.section}>
                 <Text style={styles.titleSection}>Consultas{"\n"}para ti</Text>
                 <ButtonConsultationList />
             </View>
+            {/* cards de consultas capilares */}
             <View style={{marginBottom: 50}}>
               <ConsultCard cards={consultCards} />
             </View>

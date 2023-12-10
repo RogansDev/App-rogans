@@ -19,7 +19,7 @@ const Acceder = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../../assets/acceder.jpg")}
+        source={require("../../../assets/Acceder.jpg")}
         style={styles.background}
       />
       <View style={styles.contend}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   background: {
     width: "100%",
     height: "100%",
-    opacity: 0.7,
+    
   },
   contend: {
     width: "100%",

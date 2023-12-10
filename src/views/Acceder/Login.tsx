@@ -1,43 +1,40 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 import BottomLogin from "../../components/BottomLogin";
-import LogoBlack from '../../../assets/logo-black.svg';
-import Forget from '../../../assets/password-check.svg'
+import LogoBlack from "../../../assets/logo-black.svg";
+import Forget from "../../../assets/password-check.svg";
+import { MyColors, MyFont } from "../../theme/AppTheme";
 
 const Login = () => {
   return (
     <View style={styles.container}>
-      <LogoBlack  style={styles.background} />
-      <View></View>
-      <View style={styles.contentForm}>
-        <View style={styles.form}>
-          <View style={styles.inputName}>
-            <TextInput
-              placeholder="Ingresa tus nombres"
-              style={styles.textInput}
-              keyboardType="default"
-            />
-            <Text style={styles.textNames}>Usuario</Text>
+      <View style={styles.logoContainer}>
+        <LogoBlack width={140} height={100} />
+      </View>
+      <View style={styles.form}>
+        {/* imput de login */}
+        <View>
+          <View style={styles.titleModalButton}>
+            <Text style={styles.text1TitleModalButton}> Nombre de usuario </Text>
+            <Text style={styles.text2TitleModalButton}>(Requerido)</Text>
           </View>
-          <View style={styles.inputName}>
-            <TextInput
-              placeholder="Ingresa tus nombres"
-              style={styles.textInput}
-              keyboardType="default"
-              secureTextEntry={true}
-            />
-            <Text style={styles.textNames}>Contraseña</Text>
+          <TextInput 
+            placeholder="Correo electronico" 
+            keyboardType="default" 
+            style={styles.formTextInput}
+          />
+        </View>
+        {/* Input de contraseña */}
+        <View>
+          <View style={styles.titleModalButton}>
+            <Text style={styles.text1TitleModalButton}>Contraseña </Text>
+            <Text style={styles.text2TitleModalButton}>(Requerido)</Text>
           </View>
-          <View style={styles.terms}>
-            <Text style={styles.termsText}>Acepto las condiciones</Text>
-          </View>
-          <View>
-             <BottomLogin />
-          </View>
-          <View style={styles.forget}>
-            <Forget width={20} height={20} />
-            <Text>Olvide mi contraseña</Text>
-          </View>
+          <TextInput 
+            placeholder="Ingresa tu contraseña" 
+            keyboardType="default" 
+            style={styles.formTextInput}
+          />
         </View>
       </View>
     </View>
@@ -47,57 +44,50 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: MyColors.base,
   },
-  background: {
-    display: "flex",
+  logoContainer: {
+    position: "absolute",
     alignSelf: "center",
-    top: 110,
-  },
-  contentForm: {
-    display: "flex",
-    flexDirection: "column",
-    alignSelf: "center",
-    margin: 80,
-    top: 80,
+    top: "20%",
   },
   form: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    gap: 20,
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    top: 250,
+    padding: 20,
   },
-  inputName: {
-    width: 340,
-    height: 50,
-    borderColor: "#D2D2D2",
-    borderWidth: 1,
-    borderRadius: 5,
-  },
-  textInput: {
-    height: 50,
-    marginLeft: 10,
-  },
-  textNames: {
-    position: "relative",
-    bottom: 62,
-    left: 14,
-  },
-  terms: {
+  formTextInput: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 20,
+    justifyContent: "space-between",
+    borderWidth: 1,
+    borderColor: "#909090",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 10,
   },
-  termsText: {
-    marginLeft: 8,
-  },
-  forget: {
-    display: "flex",
+  titleModalButton: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignSelf: "center",
-    gap: 10,
-  }
+    position: "absolute",
+    top: 2,
+    left: 18,
+    padding: 2,
+    backgroundColor: "white",
+    zIndex: 10,
+  },
+  text1TitleModalButton: {
+    fontSize: 11,
+    fontFamily: MyFont.regular,
+    color: "#404040",
+  },
+  text2TitleModalButton: {
+    fontSize: 10,
+    fontFamily: MyFont.regular,
+    color: "#C0C0C0",
+  },
 });
 
 export default Login;

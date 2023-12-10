@@ -8,7 +8,7 @@ import { StatusBar } from "expo-status-bar";
 import SecondScreen from "./src/views/ContainerHome/SecondScreen";
 import ThirdScreen from "./src/views/ContainerHome/ThirdScreen";
 import Home from "./src/views/Home/Home";
-import Register from "./src/views/Acceder/Register";
+import Register from './src/views/Acceder/Register';
 import Loading from "./src/views/loading/Loading";
 import Acceder from "./src/views/Acceder/Acceder";
 import Login from "./src/views/Acceder/Login";
@@ -27,6 +27,7 @@ export type RootStackParamsList = {
   Acceder: undefined;
   Home: undefined;
   Login: undefined;
+  Register: undefined;
   ListaDeConsultas: undefined;
   ListaDeProcedimientos: undefined;
   DescripcionConsultas: undefined;
@@ -110,6 +111,20 @@ const App = () => {
             headerShown: true,
             headerTransparent: true,
             headerTitle: 'Inicia sesion',
+            headerTitleStyle: {
+              color: 'black',
+            },
+            headerTintColor: MyColors.primary,
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen 
+           name="Register" 
+           component={Register} 
+           options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Registrarse',
             headerTitleStyle: {
               color: 'black',
             },
