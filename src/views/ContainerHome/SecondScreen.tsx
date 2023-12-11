@@ -1,10 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import BottonOpenTwo from "../../components/BottonOpenTwo";
+import { useNavigation } from "@react-navigation/native"; 
+import { StackNavigationProp } from "@react-navigation/stack"; 
+import { RootStackParamsList } from "../../../App";
+import ScreenSecond from "../../components/ScreenSecond";
 import { MyColors, MyFont } from "../../theme/AppTheme";
 
 const SecondScreen = () => {
-  
+
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (
     <View style={styles.container}>
@@ -21,12 +25,18 @@ const SecondScreen = () => {
            <Text style={styles.textColor}> productos para tus tratamientos.</Text>
         </Text>
         <View style={{ marginTop: 20 }}>
-          <BottonOpenTwo text="Siguiente" />
+          <ScreenSecond />
         </View>
         <View style={styles.contentItems}>
-           <View style={styles.selectSecond}></View>
-           <View style={styles.selectFirst}></View>
-           <View style={styles.selectThird}></View>
+           <Text 
+             style={styles.selectSecond}
+             onPress={() => navigation.navigate("FIrstScreen")}
+           ></Text>
+           <Text style={styles.selectFirst}></Text>
+           <Text 
+              style={styles.selectThird}
+              onPress={() => navigation.navigate("Regresar")}
+            ></Text>
         </View>
       </View>
     </View>
@@ -79,7 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignSelf: "center",
-    gap: 10,
+    gap: 20,
     marginTop: 28,
   },
   selectFirst: {
@@ -89,13 +99,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   selectSecond: {
-    width: 10,
+    width: 30,
     height: 10,
     backgroundColor: MyColors.gray,
     borderRadius: 10,
   },
   selectThird: {
-    width: 10,
+    width: 30,
     height: 10,
     backgroundColor: MyColors.gray,
     borderRadius: 10,

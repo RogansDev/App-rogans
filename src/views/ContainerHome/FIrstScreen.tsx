@@ -1,13 +1,15 @@
 import React from "react";
 import { Image, StyleSheet, Text, ToastAndroid, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import BottonNext from "../../components/BottonNext";
+import ScreenFirst from "../../components/ScreenFirst";
 import { MyColors, MyFont } from "../../theme/AppTheme";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamsList } from "../../../App";
 
 
 export const FIrstScreen = () => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
 
   return (
@@ -20,14 +22,19 @@ export const FIrstScreen = () => {
           <Text style={styles.textColor}> tratamientos personalizados </Text> para tus necesidades.
         </Text>
         <View style={{ marginTop: 20 }}>
-              <BottonNext
+              <ScreenFirst
                 text="Siguiente" 
               />
         </View>
         <View style={styles.contentItems}>
-          <View style={styles.selectFirst}></View>
-          <View style={styles.selectSecond}></View>
-          <View style={styles.selectThird}></View>
+          <Text style={styles.selectFirst}></Text>
+          <Text 
+             style={styles.selectSecond}
+             onPress={() => navigation.navigate("Martin")}
+          ></Text>
+          <Text 
+             style={styles.selectThird}
+          ></Text>
         </View>
       </View>
     </View>
@@ -81,7 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignSelf: "center",
-    gap: 10,
+    gap: 20,
     marginTop: 28,
   },
   selectFirst: {
@@ -91,13 +98,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   selectSecond: {
-    width: 10,
+    width: 30,
     height: 10,
     backgroundColor: MyColors.gray,
     borderRadius: 10,
   },
   selectThird: {
-    width: 10,
+    width: 30,
     height: 10,
     backgroundColor: MyColors.gray,
     borderRadius: 10,

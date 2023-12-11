@@ -1,10 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import BottonOpenTwo from "../../components/BottonOpenTwo";
 import { MyColors, MyFont } from "../../theme/AppTheme";
-import BottonAcceder from "../../components/BottonAcceder";
+import ScreenThrid from "../../components/ScreenThrid";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamsList } from "../../../App";
 
 const ThirdScreen = () => {
+
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>()
+
+
   return (
     <View style={styles.container}>
       <Image
@@ -18,11 +24,17 @@ const ThirdScreen = () => {
              para estar al tanto de tus <Text style={styles.parraText}>citas y tratamientos.</Text> 
         </Text>
         <View style={{ marginTop: 20 }}>
-          <BottonAcceder text="¡Comencemos!" />
+          <ScreenThrid text="¡Comencemos!" />
         </View>
         <View style={styles.contentItems}>
-          <View style={styles.selectSecond}></View>
-          <View style={styles.selectThird}></View>
+          <Text 
+             style={styles.selectSecond}
+             onPress={() => navigation.navigate("FIrstScreen")}
+          ></Text>
+          <Text 
+            style={styles.selectThird}
+            onPress={() => navigation.navigate("Martin")}
+          ></Text>
           <View style={styles.selectFirst}></View>
         </View>
       </View>
@@ -56,6 +68,7 @@ const styles = StyleSheet.create({
       textAlign: "center",
       marginTop: 20,
       color: "white",
+      fontWeight: "bold"
     },
     parraForm: {
       fontSize: 15,
@@ -76,7 +89,7 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       justifyContent: "center",
       alignSelf: "center",
-      gap: 10,
+      gap: 20,
       marginTop: 28,
     },
     selectFirst: {
@@ -86,13 +99,13 @@ const styles = StyleSheet.create({
       borderRadius: 10,
     },
     selectSecond: {
-      width: 10,
+      width: 30,
       height: 10,
       backgroundColor: MyColors.gray,
       borderRadius: 10,
     },
     selectThird: {
-      width: 10,
+      width: 30,
       height: 10,
       backgroundColor: MyColors.gray,
       borderRadius: 10,

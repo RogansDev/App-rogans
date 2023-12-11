@@ -10,7 +10,7 @@ interface Props {
     text: string;
 }
 
-const BottonAcceder = ({text}: Props) => {
+const ScreenThrid = ({text}: Props) => {
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
     
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: 20,
         fontFamily: MyFont.regular,
+        fontWeight: "bold",
     },
     contentNext: {
         display: 'flex',
@@ -55,4 +56,4 @@ const styles = StyleSheet.create({
         top: 6,  
       },
 })
-export default BottonAcceder;
+export default ScreenThrid;

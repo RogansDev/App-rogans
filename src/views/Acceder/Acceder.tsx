@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { MyColors, MyFont } from "../../theme/AppTheme";
-import LoginClick from "../../components/LoginClick";
-import RegisterClick from "../../components/RegisterClick";
+import NavLogin from "../../components/NavLogin";
+import NavRegister from "../../components/NavRegister";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../../App";
@@ -25,8 +25,8 @@ const Acceder = () => {
       <View style={styles.contend}>
         <LogoWhite width={120} height={50} style={styles.logo} />
         <View style={styles.bottomGap}>
-          <LoginClick />
-          <RegisterClick />
+          <NavLogin />
+          <NavRegister />
         </View>
         <View style={styles.contentColum}>
           <View>
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 20,
+    top: 40,
   },
   contentColum: {
     display: "flex",

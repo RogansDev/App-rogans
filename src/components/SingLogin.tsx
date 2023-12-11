@@ -7,7 +7,7 @@ interface Props {
     text: string,
 }
 
-const BottomLogin = () => {
+const SingLogin = () => {
 
 
   return (
@@ -15,7 +15,7 @@ const BottomLogin = () => {
       style={styles.roundedBottom}
     >
        <View style={styles.flexBttom}>
-          <Text style={styles.textBottom}>Iniciar sesion </Text>
+          <Text style={styles.textBottom}>Ingresar </Text>
           <SendIcon width={20} height={20}  />
        </View>
     </TouchableOpacity>
@@ -25,7 +25,7 @@ const BottomLogin = () => {
 
 const styles = StyleSheet.create({
     roundedBottom: {
-        width: 320,
+        width: "100%",
         height: 45,
         display: 'flex',
         alignSelf: 'center',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     textBottom: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 15,
         fontFamily: MyFont.regular,
     },
     logoLogin: {
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
         height: 20,
     }
 })
-export default BottomLogin;
+export default SingLogin;

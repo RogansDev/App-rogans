@@ -19,6 +19,8 @@ import ProcedureDescription from "./src/views/Procedimientos/ProcedureDescriptio
 import ConsultationConfirmation from "./src/views/Consultas/ConsultationConfirmation";
 import ConfirmationPage from "./src/views/Consultas/ConfirmationPage";
 import CustomHeader from "./src/components/CustomHeader"
+import UpdatePass from "./src/views/Acceder/UpdatePass";
+import ModalVerifitCode from "./src/components/ModalVerifitCode";
 
 export type RootStackParamsList = {
   FIrstScreen: undefined;
@@ -27,6 +29,8 @@ export type RootStackParamsList = {
   Acceder: undefined;
   Home: undefined;
   Login: undefined;
+  UpdateKey: undefined;
+  ModalVerifitCode: undefined;
   Register: undefined;
   ListaDeConsultas: undefined;
   ListaDeProcedimientos: undefined;
@@ -54,7 +58,7 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Stack.Navigator>
     
         <Stack.Screen 
@@ -74,8 +78,7 @@ const App = () => {
             headerTitleStyle: {
               color: 'white',
             },
-            headerTintColor: MyColors.primary,
-            
+            headerTintColor: MyColors.primary,   
           }}
         />
         <Stack.Screen
@@ -110,13 +113,38 @@ const App = () => {
            options={{
             headerShown: true,
             headerTransparent: true,
-            headerTitle: 'Inicia sesion',
+            headerTitle: 'Regresar',
             headerTitleStyle: {
               color: 'black',
             },
             headerTintColor: MyColors.primary,
-            headerTitleAlign: 'center',
           }}
+        />
+        <Stack.Screen 
+           name="UpdateKey" 
+           component={UpdatePass} 
+           options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Regresar',
+            headerTitleStyle: {
+              color: 'black',
+            },
+            headerTintColor: MyColors.primary,
+          }}
+        />
+        <Stack.Screen
+           name="ModalVerifitCode"
+           component={ModalVerifitCode}
+           options={{
+             headerShown: true,
+             headerTransparent: true,
+             headerTitle: 'Regresar',
+             headerTitleStyle: {
+               color: 'black'
+             },
+             headerTintColor: MyColors.primary,
+           }}
         />
         <Stack.Screen 
            name="Register" 

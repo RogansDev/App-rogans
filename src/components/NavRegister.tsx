@@ -8,7 +8,7 @@ import Register from '../../assets/clickregister.svg'
 
 
 
-const RegisterClick = () => {
+const NavRegister = () => {
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RegisterClick;
+export default NavRegister;

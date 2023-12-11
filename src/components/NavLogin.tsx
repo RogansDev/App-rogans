@@ -6,7 +6,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
 import Login from '../../assets/loginIniciar.svg'
 
-const LoginClick = () => {
+const NavLogin = () => {
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
   
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
         height: 20,
     }
 })
-export default LoginClick;
+export default NavLogin;

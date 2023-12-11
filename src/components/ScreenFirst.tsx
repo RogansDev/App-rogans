@@ -1,21 +1,22 @@
-import React from "react";
-import { TouchableOpacity, StyleSheet, Text, View, Image } from "react-native";
-import { MyColors, MyFont } from "../theme/AppTheme";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamsList } from "../../App";
+import React from 'react';
+import { TouchableOpacity, StyleSheet, Text, Image, View } from 'react-native' 
+import { MyColors, MyFont } from '../theme/AppTheme';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../App';
 import Arrow from '../../assets/arrow.svg'
 
 interface Props {
-  text: string;
+  text: string,
 }
 
-const BottonOpenTwo = ({ text }: Props) => {
+const ScreenFirst = ({text}: Props) => {
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Regresar")}
+      onPress={() => navigation.navigate('Martin')}
       style={styles.roundedBottom}
     >
       <View style={styles.contentNext}>
@@ -25,23 +26,17 @@ const BottonOpenTwo = ({ text }: Props) => {
         <Arrow width={20} height={20}  style={styles.icon}/>
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   roundedBottom: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    alignItems: "center",
+    alignItems: 'center',
     backgroundColor: MyColors.buttonColor,
-    justifyContent: "center",
+    justifyContent: 'center',
     borderRadius: 15,
-  },
-  textBottom: {
-    color: "black",
-    fontWeight: "bold",
-    fontSize: 20,
-    fontFamily: MyFont.regular,
   },
   contentNext: {
     display: 'flex',
@@ -52,8 +47,15 @@ const styles = StyleSheet.create({
   },
   icon: {
     left: 10,
-    top: 6, 
+    top: 6,
+    
   },
-});
+  textBottom: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 20,
+    fontFamily: MyFont.regular,
+  }
+})
 
-export default BottonOpenTwo;
+export default ScreenFirst;
