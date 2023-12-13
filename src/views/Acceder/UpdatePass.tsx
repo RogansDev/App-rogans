@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import LogoBlack from '../../../assets/logo-black.svg'
+import LogoBlack from '../../../assets/icons/logo-black.svg'
 import { MyColors, MyFont } from '../../theme/AppTheme';
 import UpdateKeys from '../../components/UpdateKeys';
-import Check from '../../../assets/password-check.svg';
+import Check from '../../../assets/icons/password-check.svg';
 
 const UpdatePass = () => {
 

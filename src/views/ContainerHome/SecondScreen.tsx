@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack"; 
 import { RootStackParamsList } from "../../../App";
 import { MyColors, MyFont } from "../../theme/AppTheme";
-import Arrow from '../../../assets/arrow.svg';
+import Arrow from '../../../assets/icons/arrow.svg';
 
 const SecondScreen = () => {
 

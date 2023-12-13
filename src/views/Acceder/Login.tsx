@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import { View, Text, StyleSheet, Image, TextInput } from "react-native";
-import BottomLogin from "../../components/BottomLogin";
-import Icons from "../../theme/Icons";
-
-const Login = () => {
-  const { LogoBlack, Forget } = Icons;
-=======
 import React, { useState } from "react";
 import {
   View,
@@ -20,15 +11,15 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from '../../../App';
 import SingLogin from "../../components/SingLogin";
-import LogoBlack from "../../../assets/logo-black.svg";
-import Forget from "../../../assets/password-check.svg";
+import LogoBlack from "../../../assets/icons/logo-black.svg";
+import Forget from "../../../assets/icons/password-check.svg";
 import { MyColors, MyFont } from "../../theme/AppTheme";
 import Checkbox from "expo-checkbox";
-import UpdatePassword from '../../../assets/password-check.svg';
-import LineGray from '../../../assets/Frame.svg';
-import Google from '../../../assets/google-colors.svg';
-import Facebook from '../../../assets/Facebook-colors.svg';
-import Apple from '../../../assets/apple-colors.svg';
+import UpdatePassword from '../../../assets/icons/password-check.svg';
+import LineGray from '../../../assets/icons/Frame.svg';
+import Google from '../../../assets/icons/google-colors.svg';
+import Facebook from '../../../assets/icons/Facebook-colors.svg';
+import Apple from '../../../assets/icons/apple-colors.svg';
 
 
 const Login = () => {
@@ -51,7 +42,6 @@ const Login = () => {
       console.log("Debes aceptar las políticas antes de proceder.");
     }
   };
->>>>>>> refs/remotes/origin/master
 
   return (
     <View style={styles.container}>

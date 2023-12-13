@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
 import { MyColors, MyFont } from '../theme/AppTheme';
-import SendIcon from '../../assets/send-2.svg';
+import SendIcon from '../../assets/icons/send-2.svg';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';

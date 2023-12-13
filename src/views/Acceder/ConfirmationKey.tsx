@@ -4,6 +4,8 @@ import { MyColors, MyFont } from '../../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../App';
+import TickIcon from '../../../assets/icons/tick-circle.svg';
+import TickIconWhite from '../../../assets/icons/tick-circle-white.svg';
 
 const ConfirmationKey = () => {
 
@@ -13,7 +15,7 @@ const ConfirmationKey = () => {
   return (
     <View style={styles.container}>
             <View style={styles.content}>
-                <Image source={require('../../../assets/tick-circle.png')} />
+                <TickIcon width={16} height={16} />
                 <Text style={styles.title}>
                      Tu datos han sido{"\n"}Verificados correctamente
                 </Text>
@@ -24,10 +26,7 @@ const ConfirmationKey = () => {
                     <Text style={styles.textBtn}>
                         Continuar
                     </Text>
-                    <Image 
-                        source={require('../../../assets/tick-circle-white.png')} 
-                        style={styles.iconBtn} 
-                    /> 
+                    <TickIconWhite width={16} height={16} style={styles.iconBtn} /> 
                 </TouchableOpacity>
             </View>
         </View>

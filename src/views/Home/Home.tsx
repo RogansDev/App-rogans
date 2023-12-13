@@ -10,7 +10,6 @@ import ConsultCard from '../../components/ConsultCard';
 import ProcedureCard from '../../components/ProcedureCard';
 import ButtonConsultationList from '../../components/BottomMasConsultas';
 import ButtonProcedureList from '../../components/BottomMasProcedimientos';
-import Calendar from '../../components/Calendar';
 import Icons from '../../theme/Icons';
 
 interface EventType {
@@ -18,20 +17,6 @@ interface EventType {
 }
 
 const Home = () => {
-  const [eventTypes, setEventTypes] = useState<EventType[]>([]);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    getEventTypes()
-      .then(data => {
-        setEventTypes(data);
-      })
-      .catch(err => {
-        setError('Error al obtener datos');
-        console.error(err);
-      });
-  }, []);
-
   const { UserIcon, ProcedimientoIcon, ConsultasIcon, AgendaIcon } = Icons;
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
@@ -52,15 +37,6 @@ const Home = () => {
     <View style={styles.container}>
       <FloatingMenu />
       <ScrollView>
-      <View>
-        {error ? (
-          <Text>Error: {error}</Text>
-        ) : (
-          eventTypes.map((eventType, index) => (
-            <Text key={index}>{eventType.name}</Text>
-          ))
-        )}
-      </View>
         <View style={styles.header}>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Hola Juanito</Text>
@@ -69,12 +45,7 @@ const Home = () => {
             <UserIcon width={27} height={27}/>
           </TouchableOpacity>
         </View>
-<<<<<<< HEAD
-        <Calendar />
-
-=======
             {/* ICONOS DE HEADER */}
->>>>>>> refs/remotes/origin/master
             <View style={styles.containerRoundedBtn}>
               <TouchableOpacity onPress={() => navigation.navigate("ListaDeProcedimientos")} style={styles.roundedBtn}>
                   <ProcedimientoIcon style={styles.iconRoundedBtn} width={24} height={24}/>

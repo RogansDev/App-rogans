@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { MyColors, MyFont } from "../../theme/AppTheme";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../../App";
-import Arrow from "../../../assets/arrow.svg";
+import Arrow from "../../../assets/icons/arrow.svg";
 
 export const FIrstScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();

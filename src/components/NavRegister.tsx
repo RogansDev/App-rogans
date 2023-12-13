@@ -4,7 +4,7 @@ import { MyColors, MyFont } from "../theme/AppTheme";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
-import Register from '../../assets/clickregister.svg'
+import Register from '../../assets/icons/clickregister.svg'
 
 
 

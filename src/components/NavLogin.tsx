@@ -4,7 +4,7 @@ import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
-import Login from '../../assets/loginIniciar.svg'
+import Login from '../../assets/icons/loginIniciar.svg'
 
 const NavLogin = () => {
 

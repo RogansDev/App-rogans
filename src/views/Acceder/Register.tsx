@@ -1,11 +1,8 @@
 import React from "react";
 import { ViewComponent, View, Text, Image, StyleSheet, TextInput } from "react-native";
 import LogoBlack from '../../../assets/logo-black.svg'
-<<<<<<< HEAD
 import Icons from "../../theme/Icons";
-=======
 import { MyColors, MyFont } from "../../theme/AppTheme";
->>>>>>> refs/remotes/origin/master
 
 const Register = () => {
   const { LogoBlack } = Icons;
