@@ -133,7 +133,7 @@ const App = () => {
               color: 'black',
             },
             headerTintColor: MyColors.primary,
-          }}
+          })}
         />
         <Stack.Screen 
            name="UpdateKey" 
