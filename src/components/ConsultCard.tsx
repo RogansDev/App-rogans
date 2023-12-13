@@ -4,8 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
 import { MyFont } from "../theme/AppTheme";
+import Icons from '../theme/Icons';
 
 const ConsultCard = ({cards}: any) => {
+  const { AgendarIcon } = Icons;
+  
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (
@@ -17,7 +20,7 @@ const ConsultCard = ({cards}: any) => {
           <Text style={styles.cardText}>{card.title}</Text>
           <TouchableOpacity onPress={() => navigation.navigate("DescripcionConsultas")} style={styles.agendarBtn}>
             <Text style={styles.textAgendarBtn}>Agendar cita</Text>
-            <Image source={require('../../assets/agendar.png')} style={styles.iconAgendarBtn} />
+            <AgendarIcon style={styles.iconAgendarBtn} width={16} height={16}/>
           </TouchableOpacity>
         </View>
       ))}

@@ -4,9 +4,10 @@ import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
-import Login from '../../assets/loginIniciar.svg'
+import Icons from "../theme/Icons";
 
 const LoginClick = () => {
+  const { Login } = Icons;
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
   

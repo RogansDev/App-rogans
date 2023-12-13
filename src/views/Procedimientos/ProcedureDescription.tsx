@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import { View, ScrollView, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import { MyColors, MyFont } from "../../theme/AppTheme";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../App';
 import Rating from '../../components/Rating';
+import Icons from '../../theme/Icons';
 
 const ProcedureDescription = () => {
+    const { CalendarAddIcon, ArrowWhiteIcon } = Icons;
+
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
     const procedureContent = {
         image: require('../../../assets/botox2.png'),
         title: 'Botox Full face',
@@ -41,12 +49,12 @@ const ProcedureDescription = () => {
                         </View>                      
                         <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.modalButton}>
                             <Text style={styles.textModalButton}>{selectedValue ? selectedValue : 'dd/mm/aaaa'}</Text>
-                            <Image source={require('../../../assets/icon-calendar-add.png')} style={styles.imageModalButton} />
+                            <CalendarAddIcon style={styles.imageModalButton} width={16} height={16}/>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity onPress={() => navigation.navigate("ConfirmacionProcedimiento")} style={styles.button}>
                         <Text style={styles.textButtom}>Continuar</Text>
-                        <Image source={require('../../../assets/flecha-blanca.png')} />
+                        <ArrowWhiteIcon width={16} height={16} />
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -66,6 +74,9 @@ const styles = StyleSheet.create({
     image: {
         position: 'relative',
         zIndex: 1,
+        width: '100%',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     },
     textContainer: {
         position: 'relative',

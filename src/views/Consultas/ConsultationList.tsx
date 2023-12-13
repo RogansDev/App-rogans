@@ -5,9 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../App';
 import FloatingMenu from '../../components/FloatingMenu';
-
+import Icons from '../../theme/Icons';
 
 const Cosultationlist = () => {
+  const { CalendarEditIcon } = Icons;
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   const ConsultationItems = [
@@ -30,7 +32,7 @@ const Cosultationlist = () => {
                   <View style={styles.consultationInfo}>
                     <Text style={styles.consultationTitle}>{item.title}</Text>
                     <TouchableOpacity onPress={() => navigation.navigate("DescripcionConsultas")} style={styles.agendarBtn}>
-                      <Image style={styles.iconAgendarBtn} source={require("../../../assets/icon-calendar.png")} />
+                      <CalendarEditIcon style={styles.iconAgendarBtn} width={16} height={16}/>
                       <Text style={styles.textAgendarBtn}>
                         Agendar
                       </Text>

@@ -6,14 +6,11 @@ import RegisterClick from "../../components/RegisterClick";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../../App";
-import LogoWhite from "../../../assets/logo-white.svg";
-import LineaWhite from "../../../assets/linea-white.svg";
-import Facebook from "../../../assets/facebook.svg";
-import Google from "../../../assets/Google.svg";
-import Apple from "../../../assets/Apple.svg";
-import Invitado from "../../../assets/invitado.svg";
+import Icons from "../../theme/Icons";
 
 const Acceder = () => {
+  const { LogoWhite, LineaWhite, Facebook, Google, Apple, Invitado } = Icons;
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (

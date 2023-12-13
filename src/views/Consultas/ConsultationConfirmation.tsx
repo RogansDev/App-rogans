@@ -4,8 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../App';
 import { MyColors, MyFont } from "../../theme/AppTheme";
+import Icons from '../../theme/Icons';
 
-const ConsultationDescription = () => {
+const ConsultationConfirmation = () => {
+    const { VirtualIcon, NextIcon, CalendarIcon, ProfileIcon, ClockIcon, CardsIcon, CalendarWhiteIcon } = Icons;
+
     const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
     const consultationContent = {
@@ -13,7 +16,7 @@ const ConsultationDescription = () => {
         titleConsulta: 'Consulta capilar',
         oldPrice: '$50.000',
         price: 'Gratis',
-        description: 'Descripción del procedimiento o consulta./nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        description: 'Descripción del procedimiento o consulta.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         
     };
 
@@ -32,7 +35,7 @@ const ConsultationDescription = () => {
                     <View style={{flexDirection: 'column'}}>
                         <Text style={styles.title2}>{consultationContent.titleConsulta}</Text>
                         <View style={{flexDirection: 'row'}}>
-                            <Image source={require('../../../assets/virtual.png')} style={styles.imageConsultationType} />
+                            <VirtualIcon style={styles.imageConsultationType} width={18} height={18} />
                             <Text style={styles.consultationType}>Virtual</Text>
                         </View>
                     </View>
@@ -40,7 +43,7 @@ const ConsultationDescription = () => {
                 <View style={styles.textContainer}>
                     <TouchableOpacity style={styles.info}>
                         <View>
-                            <Image source={require('../../../assets/calendar.png')} style={styles.iconInfo} />
+                            <CalendarIcon style={styles.iconInfo} width={18} height={18}/>
                             <Text style={styles.titleInfo}>Fecha consulta</Text>
                         </View>
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -48,12 +51,12 @@ const ConsultationDescription = () => {
                                 <Text style={styles.textInfo}>xx/xx/xxxx</Text>
                                 <Text style={styles.textInfo}>hh:hh mm</Text>
                             </View>
-                            <Image source={require('../../../assets/arrow-right.png')} style={{marginLeft: 16}} />
+                            <NextIcon style={{marginLeft: 16}} width={24} height={24}/>
                         </View>
                     </TouchableOpacity>
                     <View style={styles.info}>
                         <View>
-                            <Image source={require('../../../assets/profile.png')} style={styles.iconInfo} />
+                            <ProfileIcon style={styles.iconInfo} width={18} height={18}/>
                             <Text style={styles.titleInfo}>Especialista</Text>
                         </View>
                         <View style={{flex: 0}}>
@@ -62,7 +65,7 @@ const ConsultationDescription = () => {
                     </View>
                     <View style={styles.info}>
                         <View>
-                            <Image source={require('../../../assets/clock.png')} style={styles.iconInfo} />
+                            <ClockIcon style={styles.iconInfo} width={18} height={18}/>
                             <Text style={styles.titleInfo}>Duración</Text>
                         </View>
                         <View style={{flex: 0}}>
@@ -71,7 +74,7 @@ const ConsultationDescription = () => {
                     </View>
                     <View style={[styles.info, {borderBottomWidth: 0}]}>
                         <View>
-                            <Image source={require('../../../assets/cards.png')} style={styles.iconInfo} />
+                            <CardsIcon style={styles.iconInfo} width={18} height={18}/>
                             <Text style={styles.titleInfo}>Costo</Text>
                         </View>
                         <View style={{flex: 0}}>
@@ -98,7 +101,7 @@ const ConsultationDescription = () => {
                         </View>
                         <TouchableOpacity onPress={() => navigation.navigate("Confirmado")} style={styles.agendarBtn}>
                             <Text style={styles.textAgendarBtn}>Agendar</Text>
-                            <Image source={require('../../../assets/calendar-2.png')} style={styles.iconAgendarBtn} />
+                            <CalendarWhiteIcon style={styles.iconAgendarBtn} width={16} height={16}/>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -259,4 +262,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ConsultationDescription;
+export default ConsultationConfirmation;

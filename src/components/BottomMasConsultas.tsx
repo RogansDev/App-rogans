@@ -4,20 +4,21 @@ import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
-import Arrow from '../../assets/arrow.svg';
+import Icons from "../theme/Icons";
 
 const BottonAcceder = () => {
+  const { Arrow } = Icons;
 
-    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
-    
-    return (
-        <TouchableOpacity onPress={() => navigation.navigate("ListaDeConsultas")} style={styles.verMas}>
-            <Arrow width={15} height={15}  />
-            <Text style={styles.textVerMas}>
-                Encuentra más
-            </Text>
-        </TouchableOpacity>
-    )
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+  
+  return (
+      <TouchableOpacity onPress={() => navigation.navigate("ListaDeConsultas")} style={styles.verMas}>
+          <Arrow width={15} height={15}  />
+          <Text style={styles.textVerMas}>
+              Encuentra más
+          </Text>
+      </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({

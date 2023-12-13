@@ -4,13 +4,13 @@ import { MyColors, MyFont } from "../theme/AppTheme";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
-import Register from '../../assets/clickregister.svg'
-
+import Icons from "../theme/Icons";
 
 
 const RegisterClick = () => {
+  const { Register } = Icons;
 
-    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (
     <TouchableOpacity 

@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
 import { MyColors, MyFont } from '../theme/AppTheme';
-import SendIcon from '../../assets/send-2.svg';
+import Icons from "../theme/Icons";
 
 interface Props {
     text: string,
 }
 
 const BottomLogin = () => {
-
-
+  const { SendIcon } = Icons;
+ 
   return (
     <TouchableOpacity
       style={styles.roundedBottom}

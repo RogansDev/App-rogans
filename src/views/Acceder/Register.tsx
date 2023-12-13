@@ -1,8 +1,11 @@
 import React from "react";
 import { ViewComponent, View, Text, Image, StyleSheet } from "react-native";
 import LogoBlack from '../../../assets/logo-black.svg'
+import Icons from "../../theme/Icons";
 
 const Register = () => {
+  const { LogoBlack } = Icons;
+
   return (
     <View style={styles.conatiner}>
       <LogoBlack style={styles.logoBlack} />

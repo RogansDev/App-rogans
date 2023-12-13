@@ -4,13 +4,15 @@ import { MyColors, MyFont } from "../theme/AppTheme";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
-import Arrow from '../../assets/arrow.svg'
+import Icons from "../theme/Icons";
 
 interface Props {
   text: string;
 }
 
 const BottonOpenTwo = ({ text }: Props) => {
+  const { Arrow } = Icons;
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (

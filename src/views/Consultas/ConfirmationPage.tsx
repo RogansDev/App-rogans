@@ -1,16 +1,18 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { MyFont } from "../../theme/AppTheme";
+import Icons from '../../theme/Icons';
 
 const ConfirmationPage = () => {
+    const { TickCircleIcon, TickCircleWhiteicon } = Icons;
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Image source={require('../../../assets/tick-circle.png')} />
+                <TickCircleIcon width={80} height={80} />
                 <Text style={styles.title}>Tu compra se ha{"\n"}realizado con éxito</Text>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={styles.textBtn}>Continuar</Text>
-                    <Image source={require('../../../assets/tick-circle-white.png')} style={styles.iconBtn} />
+                    <TickCircleWhiteicon style={styles.iconBtn} width={16} height={16} />
                 </TouchableOpacity>
             </View>
         </View>

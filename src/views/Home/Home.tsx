@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getEventTypes } from '../../../calendlyService';
 import { View, ScrollView, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { MyColors, MyFont } from "../../theme/AppTheme";
 import { useNavigation } from '@react-navigation/native';
@@ -9,10 +10,30 @@ import ConsultCard from '../../components/ConsultCard';
 import ProcedureCard from '../../components/ProcedureCard';
 import ButtonConsultationList from '../../components/BottomMasConsultas';
 import ButtonProcedureList from '../../components/BottomMasProcedimientos';
-import Arrow from '../../../assets/arrow.svg'
+import Calendar from '../../components/Calendar';
+import Icons from '../../theme/Icons';
 
+interface EventType {
+  name: string;
+}
 
 const Home = () => {
+  const [eventTypes, setEventTypes] = useState<EventType[]>([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    getEventTypes()
+      .then(data => {
+        setEventTypes(data);
+      })
+      .catch(err => {
+        setError('Error al obtener datos');
+        console.error(err);
+      });
+  }, []);
+
+  const { UserIcon, ProcedimientoIcon, ConsultasIcon, AgendaIcon } = Icons;
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   const consultCards = [
@@ -31,33 +52,40 @@ const Home = () => {
     <View style={styles.container}>
       <FloatingMenu />
       <ScrollView>
+      <View>
+        {error ? (
+          <Text>Error: {error}</Text>
+        ) : (
+          eventTypes.map((eventType, index) => (
+            <Text key={index}>{eventType.name}</Text>
+          ))
+        )}
+      </View>
         <View style={styles.header}>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Hola Juanito</Text>
           </View>
-          <View style={styles.iconContainer}>
-            <Image
-              source={require("../../../assets/user-icon.png")}
-              style={styles.userIcon}
-            />
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate("Perfil")} style={styles.iconContainer}>
+            <UserIcon width={27} height={27}/>
+          </TouchableOpacity>
         </View>
+        <Calendar />
 
             <View style={styles.containerRoundedBtn}>
               <TouchableOpacity onPress={() => navigation.navigate("ListaDeProcedimientos")} style={styles.roundedBtn}>
-                  <Image style={styles.iconRoundedBtn} source={require("../../../assets/procedimientos.png")} />
+                  <ProcedimientoIcon style={styles.iconRoundedBtn} width={24} height={24}/>
                   <Text style={styles.textRoundedBtn}>
                     Procedimientos
                   </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate("ListaDeConsultas")} style={styles.roundedBtn}>
-                  <Image style={styles.iconRoundedBtn} source={require("../../../assets/consultas.png")} />
+                  <ConsultasIcon style={styles.iconRoundedBtn} width={24} height={24}/>
                   <Text style={styles.textRoundedBtn}>
                     Consultas
                   </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.roundedBtn}>
-                  <Image style={styles.iconRoundedBtn} source={require("../../../assets/agenda.png")} />
+              <TouchableOpacity onPress={() => navigation.navigate("MiAgenda")} style={styles.roundedBtn}>
+                  <AgendaIcon style={styles.iconRoundedBtn} width={24} height={24}/>
                   <Text style={styles.textRoundedBtn}>
                     Mi Agenda
                   </Text>

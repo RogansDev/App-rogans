@@ -4,11 +4,12 @@ import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
-import Arrow from '../../assets/arrow.svg';
+import Icons from "../theme/Icons";
 
 const BottonAcceder = () => {
+  const { Arrow } = Icons;
 
-    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
     
   return (
     <TouchableOpacity onPress={() => navigation.navigate("ListaDeProcedimientos")} style={styles.verMas}>

@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 import BottomLogin from "../../components/BottomLogin";
-import LogoBlack from '../../../assets/logo-black.svg';
-import Forget from '../../../assets/password-check.svg'
+import Icons from "../../theme/Icons";
 
 const Login = () => {
+  const { LogoBlack, Forget } = Icons;
+
   return (
     <View style={styles.container}>
       <LogoBlack  style={styles.background} />

@@ -5,9 +5,11 @@ import { MyColors, MyFont } from "../../theme/AppTheme";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../App';
-import FloatingMenu from '../../components/FloatingMenu';
+import Icons from '../../theme/Icons';
 
 const ConsultationDescription = () => {
+    const { CalendarAddIcon, ArrowDownIcon, ArrowWhiteIcon } = Icons;
+
     const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
     
     const consultationContent = {
@@ -15,7 +17,7 @@ const ConsultationDescription = () => {
         title: 'Trasplante capilar',
         oldPrice: '$50.000',
         price: 'Gratis',
-        description: 'Descripción del procedimiento o consulta./nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        description: 'Descripción del procedimiento o consulta.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         
     };
 
@@ -44,7 +46,7 @@ const ConsultationDescription = () => {
                         </View>                      
                         <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.modalButton}>
                             <Text style={styles.textModalButton}>{selectedValue ? selectedValue : 'Virtual o presencial'}</Text>
-                            <Image source={require('../../../assets/flecha-abajo.png')} style={styles.imageModalButton} />
+                            <ArrowDownIcon style={styles.imageModalButton} width={16} height={16} />
                         </TouchableOpacity>
 
                         <Modal
@@ -77,12 +79,12 @@ const ConsultationDescription = () => {
                         </View>                      
                         <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.modalButton}>
                             <Text style={styles.textModalButton}>{selectedValue ? selectedValue : 'dd/mm/aaaa'}</Text>
-                            <Image source={require('../../../assets/icon-calendar-add.png')} style={styles.imageModalButton} />
+                            <CalendarAddIcon style={styles.imageModalButton} width={16} height={16}/>
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity onPress={() => navigation.navigate("ConfirmacionConsulta")} style={styles.button}>
                         <Text style={styles.textButtom}>Continuar</Text>
-                        <Image source={require('../../../assets/flecha-blanca.png')} />
+                        <ArrowWhiteIcon width={16} height={16} />
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -102,6 +104,9 @@ const styles = StyleSheet.create({
     image: {
         position: 'relative',
         zIndex: 1,
+        width: '100%',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     },
     textContainer: {
         position: 'relative',
@@ -149,6 +154,7 @@ const styles = StyleSheet.create({
     button: {
         flexDirection: 'row',
         justifyContent: 'center',
+        alignItems: 'center',
         width: '100%',
         marginTop: 10,
         padding: 12,

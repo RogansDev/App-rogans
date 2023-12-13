@@ -4,7 +4,7 @@ import { useNavigation, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
 import { MyFont } from '../theme/AppTheme';
-import Arrow from '../../assets/arrow-left.svg'
+import Icons from "../theme/Icons";
 
 interface CustomHeaderProps {
   route: RouteProp<RootStackParamsList, keyof RootStackParamsList>;
@@ -12,10 +12,12 @@ interface CustomHeaderProps {
 }
 
 const CustomHeader: React.FC<CustomHeaderProps> = ({ navigation }) => {
+  const { ArrowLeft } = Icons;
+
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.goBack()}>
-        <Arrow width={15} height={15}/>
+    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+      <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center',}} onPress={() => navigation.goBack()}>
+        <ArrowLeft width={15} height={15}/>
         <Text style={{marginLeft: 10, fontFamily: MyFont.regular,}}>Regresar</Text>
       </TouchableOpacity>
     </View>
