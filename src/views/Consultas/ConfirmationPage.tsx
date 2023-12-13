@@ -12,7 +12,11 @@ const ConfirmationPage = () => {
                 <Text style={styles.title}>Tu compra se ha{"\n"}realizado con éxito</Text>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={styles.textBtn}>Continuar</Text>
+<<<<<<< HEAD
                     <TickCircleWhiteicon style={styles.iconBtn} width={16} height={16} />
+=======
+                    <Image source={require('../../../assets/tick-circle-white.png')} style={styles.iconBtn} /> 
+>>>>>>> refs/remotes/origin/master
                 </TouchableOpacity>
             </View>
         </View>

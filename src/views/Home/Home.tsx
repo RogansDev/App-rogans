@@ -69,8 +69,12 @@ const Home = () => {
             <UserIcon width={27} height={27}/>
           </TouchableOpacity>
         </View>
+<<<<<<< HEAD
         <Calendar />
 
+=======
+            {/* ICONOS DE HEADER */}
+>>>>>>> refs/remotes/origin/master
             <View style={styles.containerRoundedBtn}>
               <TouchableOpacity onPress={() => navigation.navigate("ListaDeProcedimientos")} style={styles.roundedBtn}>
                   <ProcedimientoIcon style={styles.iconRoundedBtn} width={24} height={24}/>
@@ -91,11 +95,12 @@ const Home = () => {
                   </Text>
               </TouchableOpacity>
             </View>
-            
+            {/* texto de consultas y botton de mas consultas */}
             <View style={styles.section}>
                 <Text style={styles.titleSection}>Consultas{"\n"}para ti</Text>
                 <ButtonConsultationList />
             </View>
+            {/* cards de consultas capilares */}
             <View style={{marginBottom: 50}}>
               <ConsultCard cards={consultCards} />
             </View>

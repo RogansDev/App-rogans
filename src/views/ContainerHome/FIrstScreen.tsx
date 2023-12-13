@@ -1,33 +1,55 @@
 import React from "react";
-import { Image, StyleSheet, Text, ToastAndroid, View, TouchableOpacity } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  ToastAndroid,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import BottonNext from "../../components/BottonNext";
 import { MyColors, MyFont } from "../../theme/AppTheme";
-
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamsList } from "../../../App";
+import Arrow from "../../../assets/arrow.svg";
 
 export const FIrstScreen = () => {
-
-  const navigation = useNavigation();
-
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (
     <View style={styles.container}>
-      <Image source={require("../../../assets/Open1.png")} style={styles.background} />
+      <Image
+        source={require("../../../assets/Open1.png")}
+        style={styles.background}
+      />
       <View style={styles.form}>
         <Text style={styles.titleform}>Bienvenidos a rogans </Text>
         <Text style={styles.parraForm}>
-          Con Rogans, puedes acceder a <Text style={styles.textColor}>servicios médicos en línea</Text> y obtener
-          <Text style={styles.textColor}> tratamientos personalizados </Text> para tus necesidades.
+          Con Rogans, puedes acceder a{" "}
+          <Text style={styles.textColor}>servicios médicos en línea</Text> y
+          obtener
+          <Text style={styles.textColor}>
+            {" "}
+            tratamientos personalizados{" "}
+          </Text>{" "}
+          para tus necesidades.
         </Text>
-        <View style={{ marginTop: 20 }}>
-              <BottonNext
-                text="Siguiente" 
-              />
-        </View>
+        <TouchableOpacity 
+           style={styles.bottom}
+           onPress={() => navigation.navigate("Martin")}
+        >
+          <View style={styles.contentNext}>
+            <Text style={styles.textBoton}>Siguiente</Text>
+            <Arrow width={20} height={20} style={styles.icon} />
+          </View>
+        </TouchableOpacity>
         <View style={styles.contentItems}>
-          <View style={styles.selectFirst}></View>
-          <View style={styles.selectSecond}></View>
-          <View style={styles.selectThird}></View>
+          <Text style={styles.selectFirst}></Text>
+          <Text
+            style={styles.selectSecond}
+            onPress={() => navigation.navigate("Martin")}
+          ></Text>
+          <Text style={styles.selectThird}></Text>
         </View>
       </View>
     </View>
@@ -38,13 +60,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
-    position: 'relative',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    position: "relative",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   background: {
-    position: 'absolute',
+    position: "absolute",
     width: "100%",
     height: "100%",
     opacity: 0.7,
@@ -76,30 +98,58 @@ const styles = StyleSheet.create({
   textColor: {
     color: MyColors.primary,
   },
+  bottom: {
+    width: 340,
+    height: 50,
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: MyColors.base,
+    justifyContent: "center",
+    borderRadius: 15,
+    marginTop: 20,
+    left: 4,
+  },
+  textBoton: {
+    color: MyColors.black,
+    fontWeight: "bold",
+    fontSize: 20,
+    fontFamily: MyFont.regular,
+  },
+  icon: {
+    left: 10,
+    top: 6,
+  },
+  contentNext: {
+    display: "flex",
+    flexDirection: "row",
+    alignSelf: "center",
+    justifyContent: "center",
+    gap: 2,
+  },
   contentItems: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignSelf: "center",
-    gap: 10,
+    gap: 20,
     marginTop: 28,
   },
   selectFirst: {
-    width: 50,
+    width: 60,
     height: 10,
     backgroundColor: MyColors.base,
     borderRadius: 10,
   },
   selectSecond: {
-    width: 10,
+    width: 30,
     height: 10,
     backgroundColor: MyColors.gray,
     borderRadius: 10,
   },
   selectThird: {
-    width: 10,
+    width: 30,
     height: 10,
     backgroundColor: MyColors.gray,
     borderRadius: 10,
-  }
+  },
 });

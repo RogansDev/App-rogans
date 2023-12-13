@@ -4,18 +4,18 @@ import { MyColors, MyFont } from "../theme/AppTheme";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
-import Icons from "../theme/Icons";
+import Register from '../../assets/clickregister.svg'
 
 
-const RegisterClick = () => {
-  const { Register } = Icons;
 
-  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+const NavRegister = () => {
+
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
   return (
     <TouchableOpacity 
        style={styles.roundedBottom}
-       onPress={() => navigation.navigate('Acceder')}
+       onPress={() => navigation.navigate('Register')}
     >
       <View style={styles.flexBttom}>
         <Text style={styles.textBottom}>Registrate</Text>
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RegisterClick;
+export default NavRegister;

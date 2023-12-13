@@ -1,31 +1,36 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
 import { MyColors, MyFont } from '../theme/AppTheme';
-import Icons from "../theme/Icons";
+import SendIcon from '../../assets/send-2.svg';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../App';
 
 interface Props {
     text: string,
 }
 
-const BottomLogin = () => {
-  const { SendIcon } = Icons;
- 
+const SingLogin = () => {
+
+  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
+
   return (
     <TouchableOpacity
       style={styles.roundedBottom}
+      onPress={() => navigation.navigate("Home")}
     >
        <View style={styles.flexBttom}>
-          <Text style={styles.textBottom}>Iniciar sesion </Text>
+          <Text style={styles.textBottom}>Ingresar </Text>
           <SendIcon width={20} height={20}  />
        </View>
     </TouchableOpacity>
   )
-}
-
+};
 
 const styles = StyleSheet.create({
     roundedBottom: {
-        width: 320,
+        width: "100%",
         height: 45,
         display: 'flex',
         alignSelf: 'center',
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
     },
     textBottom: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 15,
         fontFamily: MyFont.regular,
     },
     logoLogin: {
@@ -50,4 +55,4 @@ const styles = StyleSheet.create({
         height: 20,
     }
 })
-export default BottomLogin;
+export default SingLogin;

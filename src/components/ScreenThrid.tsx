@@ -4,16 +4,15 @@ import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
-import Icons from "../theme/Icons";
+import Arrow from '../../assets/arrow.svg';
 
 interface Props {
     text: string;
 }
 
-const BottonAcceder = ({text}: Props) => {
-  const { Arrow } = Icons;
+const ScreenThrid = ({text}: Props) => {
 
-  const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
     
   return (
     <TouchableOpacity
@@ -43,6 +42,7 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: 20,
         fontFamily: MyFont.regular,
+        fontWeight: "bold",
     },
     contentNext: {
         display: 'flex',
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
         top: 6,  
       },
 })
-export default BottonAcceder;
+export default ScreenThrid;

@@ -4,10 +4,9 @@ import { MyColors, MyFont } from '../theme/AppTheme';
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamsList } from "../../App";
-import Icons from "../theme/Icons";
+import Login from '../../assets/loginIniciar.svg'
 
-const LoginClick = () => {
-  const { Login } = Icons;
+const NavLogin = () => {
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
   
@@ -50,4 +49,4 @@ const styles = StyleSheet.create({
         height: 20,
     }
 })
-export default LoginClick;
+export default NavLogin;

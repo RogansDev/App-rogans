@@ -10,7 +10,7 @@ import { StatusBar } from "expo-status-bar";
 import SecondScreen from "./src/views/ContainerHome/SecondScreen";
 import ThirdScreen from "./src/views/ContainerHome/ThirdScreen";
 import Home from "./src/views/Home/Home";
-import Register from "./src/views/Acceder/Register";
+import Register from './src/views/Acceder/Register';
 import Loading from "./src/views/loading/Loading";
 import Acceder from "./src/views/Acceder/Acceder";
 import Login from "./src/views/Acceder/Login";
@@ -26,6 +26,9 @@ import EditarCita from "./src/views/MiAgenda/EditarCita";
 import CancelationConfirmation from "./src/views/MiAgenda/CancelationConfirmation";
 import Servicios from "./src/views/Servicios/Servicios";
 import Perfil from "./src/views/User/Perfil";
+import UpdatePass from "./src/views/Acceder/UpdatePass";
+import ModalVerifitCode from "./src/components/ModalVerifitCode";
+import ConfirmationKey from "./src/views/Acceder/ConfirmationKey";
 
 export type RootStackParamsList = {
   FIrstScreen: undefined;
@@ -34,6 +37,10 @@ export type RootStackParamsList = {
   Acceder: undefined;
   Home: undefined;
   Login: undefined;
+  UpdateKey: undefined;
+  ModalVerifitCode: undefined;
+  ConfirmationKey: undefined;
+  Register: undefined;
   ListaDeConsultas: undefined;
   ListaDeProcedimientos: undefined;
   DescripcionConsultas: undefined;
@@ -66,7 +73,7 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Stack.Navigator>
     
         <Stack.Screen 
@@ -121,12 +128,63 @@ const App = () => {
            options={({ route, navigation }) => ({
             headerShown: true,
             headerTransparent: true,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
+            headerTitle: 'Regresar',
+            headerTitleStyle: {
+              color: 'black',
+            },
+            headerTintColor: MyColors.primary,
+          }}
+        />
+        <Stack.Screen 
+           name="UpdateKey" 
+           component={UpdatePass} 
+           options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Regresar',
+            headerTitleStyle: {
+              color: 'black',
+            },
+            headerTintColor: MyColors.primary,
+          }}
+        />
+        <Stack.Screen
+           name="ModalVerifitCode"
+           component={ModalVerifitCode}
+           options={{
+             headerShown: true,
+             headerTransparent: true,
+             headerTitle: 'Regresar',
+             headerTitleStyle: {
+               color: 'black'
+             },
+             headerTintColor: MyColors.primary,
+           }}
+        />
+        <Stack.Screen
+           name="ConfirmationKey"
+           component={ConfirmationKey}
+           options={{
+             headerShown: true,
+             headerTransparent: true,
+             headerTitle: 'Regresar',
+             
+           }}
+
+        />
+        <Stack.Screen 
+           name="Register" 
+           component={Register} 
+           options={{
+            headerShown: true,
+            headerTransparent: true,
+            headerTitle: 'Registrarse',
+            headerTitleStyle: {
+              color: 'black',
+            },
+            headerTintColor: MyColors.primary,
+            headerTitleAlign: 'center',
+          }}
         />
         <Stack.Screen
           name="Home"
