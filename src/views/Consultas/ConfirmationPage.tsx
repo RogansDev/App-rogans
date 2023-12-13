@@ -10,7 +10,7 @@ const ConfirmationPage = () => {
                 <Text style={styles.title}>Tu compra se ha{"\n"}realizado con éxito</Text>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={styles.textBtn}>Continuar</Text>
-                    <Image source={require('../../../assets/tick-circle-white.png')} style={styles.iconBtn} />
+                    <Image source={require('../../../assets/tick-circle-white.png')} style={styles.iconBtn} /> 
                 </TouchableOpacity>
             </View>
         </View>

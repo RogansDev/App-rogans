@@ -21,6 +21,7 @@ import ConfirmationPage from "./src/views/Consultas/ConfirmationPage";
 import CustomHeader from "./src/components/CustomHeader"
 import UpdatePass from "./src/views/Acceder/UpdatePass";
 import ModalVerifitCode from "./src/components/ModalVerifitCode";
+import ConfirmationKey from "./src/views/Acceder/ConfirmationKey";
 
 export type RootStackParamsList = {
   FIrstScreen: undefined;
@@ -31,6 +32,7 @@ export type RootStackParamsList = {
   Login: undefined;
   UpdateKey: undefined;
   ModalVerifitCode: undefined;
+  ConfirmationKey: undefined;
   Register: undefined;
   ListaDeConsultas: undefined;
   ListaDeProcedimientos: undefined;
@@ -145,6 +147,17 @@ const App = () => {
              },
              headerTintColor: MyColors.primary,
            }}
+        />
+        <Stack.Screen
+           name="ConfirmationKey"
+           component={ConfirmationKey}
+           options={{
+             headerShown: true,
+             headerTransparent: true,
+             headerTitle: 'Regresar',
+             
+           }}
+
         />
         <Stack.Screen 
            name="Register" 

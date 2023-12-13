@@ -10,14 +10,14 @@ import { RootStackParamsList } from '../../App';
 const UpdateKeys = () => {
 
   const navigate = useNavigation<StackNavigationProp<RootStackParamsList>>();
+  
   return (
     <TouchableOpacity
       style={styles.bottomContainer}
+      onPress={() => navigate.navigate("ModalVerifitCode")} 
     >
       <View style={styles.contentText} >
-         <Text style={styles.textClick}
-           onPress={() => navigate.navigate("ModalVerifitCode")}
-         >
+         <Text style={styles.textClick}>
             Actualizar contraseña
          </Text>
          <Eye />
