@@ -1,5 +1,5 @@
 import React from "react";
-import { ViewComponent, View, Text, Image, StyleSheet, TextInput } from "react-native";
+import { ViewComponent, View, Text, Image, StyleSheet, TextInput, Picker } from "react-native";
 import LogoBlack from '../../../assets/logo-black.svg'
 import Icons from "../../theme/Icons";
 import { MyColors, MyFont } from "../../theme/AppTheme";
@@ -42,6 +42,7 @@ const Register = () => {
               style={styles.input}
             />
          </View>
+         {/* correo electronico */}
          <View>
             <View style={styles.labelContent}>
                 <Text style={styles.labelNames}>Correo</Text>
@@ -50,12 +51,17 @@ const Register = () => {
             <TextInput
               placeholder="ingresa tu correo"
               placeholderTextColor="gray"
-              keyboardType="default"
+              keyboardType="email-address"
               style={styles.input}
             />
          </View>
+         {/* documento  */}
+         <View>
+            <View></View>
+            <View></View>
+         </View>
       </View>
-     
+      
     </View>
   );
 };

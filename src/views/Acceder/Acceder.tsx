@@ -16,7 +16,7 @@ const Acceder = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../../assets/acceder.jpg")}
+        source={require("../../../assets/Acceder.jpg")}
         style={styles.background}
       />
       <View style={styles.contend}>
