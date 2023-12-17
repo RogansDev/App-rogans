@@ -5,6 +5,27 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../App';
 import { MyColors, MyFont } from "../../theme/AppTheme";
 import Icons from '../../theme/Icons';
+import { agendarCita } from '../../../agendarCitaService';
+import MiCalendario from '../../components/MiCalendario';
+
+const agendarBtnHandler = () => {
+    const fechaActual = new Date();
+    const fechaFormateada = fechaActual.toISOString().split('.')[0] + "Z";;
+
+    const datosCita = {
+        "fecha_que_agendo": fechaFormateada,
+        "nombre": "Martin Montes/&123456780",
+        "telefono": "Número de teléfono",
+        "correo": "Correo electrónico",
+        "evento_agendado": "Botox",
+        "fecha": "2024-01-01T14:30:00Z",
+        "especialidad": "Especialidad seleccionada",
+        "notas": "Notas adicionales",
+        "status": "Confirmado"
+    };
+
+    agendarCita(datosCita)
+};
 
 const ConsultationConfirmation = () => {
     const { VirtualIcon, NextIcon, CalendarIcon, ProfileIcon, ClockIcon, CardsIcon, CalendarWhiteIcon } = Icons;
@@ -56,15 +77,6 @@ const ConsultationConfirmation = () => {
                     </TouchableOpacity>
                     <View style={styles.info}>
                         <View>
-                            <ProfileIcon style={styles.iconInfo} width={18} height={18}/>
-                            <Text style={styles.titleInfo}>Especialista</Text>
-                        </View>
-                        <View style={{flex: 0}}>
-                            <Text style={styles.textInfo}>Dr. Pepito Perez</Text>
-                        </View>
-                    </View>
-                    <View style={styles.info}>
-                        <View>
                             <ClockIcon style={styles.iconInfo} width={18} height={18}/>
                             <Text style={styles.titleInfo}>Duración</Text>
                         </View>
@@ -81,6 +93,7 @@ const ConsultationConfirmation = () => {
                             <Text style={styles.textInfo}>Gratuito</Text>
                         </View>
                     </View>
+                    <MiCalendario />
 
                     <View style={styles.accordionItemContainer}>
                         <View style={styles.accordionItem}>
@@ -99,7 +112,7 @@ const ConsultationConfirmation = () => {
                             <Text style={styles.price}>Gratis</Text>
                             <Text style={styles.consulta}>Consulta capilar</Text>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate("Confirmado")} style={styles.agendarBtn}>
+                        <TouchableOpacity onPress={agendarBtnHandler} style={styles.agendarBtn}>
                             <Text style={styles.textAgendarBtn}>Agendar</Text>
                             <CalendarWhiteIcon style={styles.iconAgendarBtn} width={16} height={16}/>
                         </TouchableOpacity>
