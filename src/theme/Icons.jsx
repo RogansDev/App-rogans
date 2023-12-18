@@ -45,11 +45,12 @@ import BulletPoint from '../../assets/icons/bullet-point.svg';
 import UbicacionIcon from '../../assets/icons/ubicacion.svg';
 import AjustesIcon from '../../assets/icons/ajustes.svg';
 import EditarIcon from '../../assets/icons/editar.svg';
-
+import Eye from '../../assets/Eve.svg';
 
 const Icons = {
   LogoWhite,
   LineaWhite,
+  Eye,
   Facebook,
   Google,
   Apple,
