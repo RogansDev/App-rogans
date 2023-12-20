@@ -45,6 +45,7 @@ import BulletPoint from '../../assets/icons/bullet-point.svg';
 import UbicacionIcon from '../../assets/icons/ubicacion.svg';
 import AjustesIcon from '../../assets/icons/ajustes.svg';
 import EditarIcon from '../../assets/icons/editar.svg';
+import ArrowGreen from '../../assets/icons/arrow-green.svg';
 
 
 const Icons = {
@@ -95,6 +96,7 @@ const Icons = {
   UbicacionIcon,
   AjustesIcon,
   EditarIcon,
+  ArrowGreen,
 };
 
 export default Icons;

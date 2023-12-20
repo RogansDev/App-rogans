@@ -7,30 +7,14 @@ import { MyColors, MyFont } from "../../theme/AppTheme";
 import Icons from '../../theme/Icons';
 import { agendarCita } from '../../../agendarCitaService';
 import MiCalendario from '../../components/MiCalendario';
-
-const agendarBtnHandler = () => {
-    const fechaActual = new Date();
-    const fechaFormateada = fechaActual.toISOString().split('.')[0] + "Z";;
-
-    const datosCita = {
-        "fecha_que_agendo": fechaFormateada,
-        "nombre": "Martin Montes/&123456780",
-        "telefono": "Número de teléfono",
-        "correo": "Correo electrónico",
-        "evento_agendado": "Botox",
-        "fecha": "2024-01-01T14:30:00Z",
-        "especialidad": "Especialidad seleccionada",
-        "notas": "Notas adicionales",
-        "status": "Confirmado"
-    };
-
-    agendarCita(datosCita)
-};
+import { useAppContext } from '../../../AppContext';
 
 const ConsultationConfirmation = () => {
     const { VirtualIcon, NextIcon, CalendarIcon, ProfileIcon, ClockIcon, CardsIcon, CalendarWhiteIcon } = Icons;
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
+    const { horaAgendada, fecha, virtualPresecial }: any = useAppContext();
 
     const consultationContent = {
         image: require('../../../assets/implante2.png'),
@@ -38,14 +22,60 @@ const ConsultationConfirmation = () => {
         oldPrice: '$50.000',
         price: 'Gratis',
         description: 'Descripción del procedimiento o consulta.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        
     };
 
     const [isExpanded, setExpanded] = useState(false);
 
     const toggleAccordion = () => {
         setExpanded(!isExpanded);
-    };   
+    };
+
+    const agendarBtnHandler = async () => {
+        const fechaActual = new Date();
+        const fechaFormateada = fechaActual.toISOString().split('.')[0] + "Z";;
+    
+        const datosCita = {
+            "fecha_que_agendo": fechaFormateada,
+            "nombre": "Martin Montes/&123456780",
+            "telefono": "Número de teléfono",
+            "correo": "Correo electrónico",
+            "evento_agendado": "Botox",
+            "fecha": fechaAgendadaFormateada,
+            "especialidad": "Especialidad seleccionada",
+            "notas": virtualPresecial,
+            "status": "Confirmado"
+        };
+    
+        try {
+            const respuesta = await agendarCita(datosCita);
+            if (respuesta.mensaje === "Cita agendada") {
+                navigation.navigate("Confirmado");
+            } else {
+                console.log("Error al agendar cita:", respuesta);
+                // Manejar la respuesta no exitosa aquí
+            }
+        } catch (error) {
+            console.error("Error al llamar a agendarCita", error);
+            // Manejar el error de red aquí
+        }
+    };
+    
+
+    function convertirFechaYHora(fecha: any, horaAgendada: any) {
+        // Convertir a formato de 24 horas
+        const [hora, minutos, ampm] = horaAgendada.match(/(\d+):(\d+) (\w+)/).slice(1);
+        let hora24 = ampm === 'PM' ? parseInt(hora, 10) + 12 : parseInt(hora, 10);
+        if (hora24 === 24) hora24 = 12;
+        if (hora24 === 12 && ampm === 'AM') hora24 = 0;
+      
+        const fechaHora = new Date(`${fecha} ${hora24}:${minutos}:00`);
+      
+        fechaHora.setHours(fechaHora.getHours());
+      
+        return fechaHora.toISOString().replace('.000', '');
+      }
+
+      const fechaAgendadaFormateada = convertirFechaYHora(fecha, horaAgendada);
 
     return (
         <View style={styles.container}>
@@ -55,26 +85,33 @@ const ConsultationConfirmation = () => {
                     <Image source={consultationContent.image} style={styles.image} />
                     <View style={{flexDirection: 'column'}}>
                         <Text style={styles.title2}>{consultationContent.titleConsulta}</Text>
-                        <View style={{flexDirection: 'row'}}>
-                            <VirtualIcon style={styles.imageConsultationType} width={18} height={18} />
-                            <Text style={styles.consultationType}>Virtual</Text>
-                        </View>
+                        {virtualPresecial === 'Virtual' ? (
+                            <View style={{flexDirection: 'row'}}>
+                                <VirtualIcon style={styles.imageConsultationType} width={18} height={18} />
+                                <Text style={styles.consultationType}>Virtual</Text>
+                            </View>
+                        ) : (
+                            <View style={{flexDirection: 'row'}}>
+                                <ProfileIcon style={styles.imageConsultationType} width={18} height={18} />
+                                <Text style={styles.consultationType}>Presencial</Text>
+                            </View>
+                        )
+                        }
                     </View>
                 </View>
                 <View style={styles.textContainer}>
-                    <TouchableOpacity style={styles.info}>
+                    <View style={styles.info}>
                         <View>
                             <CalendarIcon style={styles.iconInfo} width={18} height={18}/>
                             <Text style={styles.titleInfo}>Fecha consulta</Text>
                         </View>
                         <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                            <View>
-                                <Text style={styles.textInfo}>xx/xx/xxxx</Text>
-                                <Text style={styles.textInfo}>hh:hh mm</Text>
+                            <View style={{alignItems: 'flex-end',}}>
+                                <Text style={styles.textInfo}>{fecha}</Text>
+                                <Text style={styles.textInfo}>{horaAgendada}</Text>
                             </View>
-                            <NextIcon style={{marginLeft: 16}} width={24} height={24}/>
                         </View>
-                    </TouchableOpacity>
+                    </View>
                     <View style={styles.info}>
                         <View>
                             <ClockIcon style={styles.iconInfo} width={18} height={18}/>
@@ -93,7 +130,6 @@ const ConsultationConfirmation = () => {
                             <Text style={styles.textInfo}>Gratuito</Text>
                         </View>
                     </View>
-                    <MiCalendario />
 
                     <View style={styles.accordionItemContainer}>
                         <View style={styles.accordionItem}>

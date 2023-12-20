@@ -2,15 +2,20 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { MyFont } from "../../theme/AppTheme";
 import Icons from '../../theme/Icons';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../App';
 
 const ConfirmationPage = () => {
     const { TickCircleIcon, TickCircleWhiteicon } = Icons;
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <TickCircleIcon width={80} height={80} />
-                <Text style={styles.title}>Tu compra se ha{"\n"}realizado con éxito</Text>
-                <TouchableOpacity style={styles.btn}>
+                <Text style={styles.title}>Tu cita se ha{"\n"}realizado con éxito</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Home")} style={styles.btn}>
                     <Text style={styles.textBtn}>Continuar</Text>
                     <TickCircleWhiteicon style={styles.iconBtn} width={16} height={16} />
                 </TouchableOpacity>

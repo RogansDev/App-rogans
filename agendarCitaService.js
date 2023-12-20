@@ -1,4 +1,3 @@
-// CitasService.js
 export const agendarCita = (datosCita) => {
   console.log('Datos de la cita:', datosCita);
 
@@ -9,9 +8,18 @@ export const agendarCita = (datosCita) => {
       },
       body: JSON.stringify(datosCita),
   })
-  .then(response => response.json()) // Convirtiendo la respuesta a JSON
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Respuesta del servidor no fue OK');
+      }
+      return response.json();
+  })
   .then(data => {
-    console.log('Respuesta del servidor:', data); // Mostrando la respuesta en consola
-    return data; // Devolviendo los datos para su uso posterior
+    console.log('Respuesta del servidor:', data);
+    return data;
+  })
+  .catch(error => {
+    console.error('Error al realizar la solicitud:', error);
+    throw error; // Re-lanzar el error para manejarlo en el llamador
   });
 };

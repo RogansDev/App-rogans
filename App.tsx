@@ -29,6 +29,7 @@ import Perfil from "./src/views/User/Perfil";
 import UpdatePass from "./src/views/Acceder/UpdatePass";
 import ModalVerifitCode from "./src/components/ModalVerifitCode";
 import ConfirmationKey from "./src/views/Acceder/ConfirmationKey";
+import { AppContextProvider } from './AppContext';
 
 export type RootStackParamsList = {
   FIrstScreen: undefined;
@@ -73,299 +74,286 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer >
-      <Stack.Navigator>
-    
-        <Stack.Screen 
-           name="FIrstScreen" 
-           component={FIrstScreen} 
-           options={{
-             headerShown: false,
-           }}
-        />
-        <Stack.Screen
-          name="Martin"
-          component={SecondScreen}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: true,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeaderTransparent navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="Regresar"
-          component={ThirdScreen}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: true,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeaderTransparent navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen 
-           name="Acceder" 
-           component={Acceder} 
-           options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: true,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeaderTransparent navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen 
-           name="Login" 
-           component={Login} 
-           options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: true,
-            headerTitle: 'Regresar',
-            headerTitleStyle: {
-              color: 'black',
-            },
-            headerTintColor: MyColors.primary,
-          })}
-        />
-        <Stack.Screen 
-           name="UpdateKey" 
-           component={UpdatePass} 
-           options={{
-            headerShown: true,
-            headerTransparent: true,
-            headerTitle: 'Regresar',
-            headerTitleStyle: {
-              color: 'black',
-            },
-            headerTintColor: MyColors.primary,
-          }}
-        />
-        <Stack.Screen
-           name="ModalVerifitCode"
-           component={ModalVerifitCode}
-           options={{
-             headerShown: true,
-             headerTransparent: true,
-             headerTitle: 'Regresar',
-             headerTitleStyle: {
-               color: 'black'
-             },
-             headerTintColor: MyColors.primary,
-           }}
-        />
-        <Stack.Screen
-           name="ConfirmationKey"
-           component={ConfirmationKey}
-           options={{
-             headerShown: true,
-             headerTransparent: true,
-             headerTitle: 'Regresar',
-             
-           }}
+    <AppContextProvider>
+      <NavigationContainer >
+        <Stack.Navigator>
+      
+          <Stack.Screen 
+            name="FIrstScreen" 
+            component={FIrstScreen} 
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Martin"
+            component={SecondScreen}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeaderTransparent navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="Regresar"
+            component={ThirdScreen}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeaderTransparent navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen 
+            name="Acceder" 
+            component={Acceder} 
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeaderTransparent navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen 
+            name="Login" 
+            component={Login} 
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: 'Regresar',
+              headerTitleStyle: {
+                color: 'black',
+              },
+              headerTintColor: MyColors.primary,
+            })}
+          />
+          <Stack.Screen 
+            name="UpdateKey" 
+            component={UpdatePass} 
+            options={{
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: 'Regresar',
+              headerTitleStyle: {
+                color: 'black',
+              },
+              headerTintColor: MyColors.primary,
+            }}
+          />
+          <Stack.Screen
+            name="ModalVerifitCode"
+            component={ModalVerifitCode}
+            options={{
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: 'Regresar',
+              headerTitleStyle: {
+                color: 'black'
+              },
+              headerTintColor: MyColors.primary,
+            }}
+          />
+          <Stack.Screen
+            name="ConfirmationKey"
+            component={ConfirmationKey}
+            options={{
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: 'Regresar',
+              
+            }}
 
-        />
-        <Stack.Screen 
-           name="Register" 
-           component={Register} 
-           options={{
-            headerShown: true,
-            headerTransparent: true,
-            headerTitle: 'Registrarse',
-            headerTitleStyle: {
-              color: 'black',
-            },
-            headerTintColor: MyColors.primary,
-            headerTitleAlign: 'center',
-          }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ /*  */
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="ListaDeConsultas"
-          component={ConsultationList}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="ListaDeProcedimientos"
-          component={ProcedureList}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="DescripcionConsultas"
-          component={ConsultationDescription}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="DescripcionProcedimientos"
-          component={ProcedureDescription}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="ConfirmacionConsulta"
-          component={ConsultationConfirmation}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="ConfirmacionProcedimiento"
-          component={ProcedureConfirmation}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="Confirmado"
-          component={ConfirmationPage}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="MiAgenda"
-          component={MiAgenda}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerStyle: {
-              backgroundColor: '#FCFCFC',
-            },
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="EditarCita"
-          component={EditarCita}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerStyle: {
-              backgroundColor: '#FCFCFC',
-            },
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="CitaCancelada"
-          component={CancelationConfirmation}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerStyle: {
-              backgroundColor: '#FCFCFC',
-            },
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="Servicios"
-          component={Servicios}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerStyle: {
-              backgroundColor: '#FCFCFC',
-            },
-            headerShadowVisible: false,
-          })}
-        />
-        <Stack.Screen
-          name="Perfil"
-          component={Perfil}
-          options={({ route, navigation }) => ({
-            headerShown: true,
-            headerTransparent: false,
-            headerTitle: '',
-            headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
-            headerTintColor: '#00D0B1',
-            headerTitleAlign: 'left',
-            headerStyle: {
-              backgroundColor: '#FCFCFC',
-            },
-            headerShadowVisible: false,
-          })}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          />
+          <Stack.Screen 
+            name="Register" 
+            component={Register} 
+            options={{
+              headerShown: true,
+              headerTransparent: true,
+              headerTitle: 'Registrarse',
+              headerTitleStyle: {
+                color: 'black',
+              },
+              headerTintColor: MyColors.primary,
+              headerTitleAlign: 'center',
+            }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ /*  */
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="ListaDeConsultas"
+            component={ConsultationList}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="ListaDeProcedimientos"
+            component={ProcedureList}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="DescripcionConsultas"
+            component={ConsultationDescription}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="DescripcionProcedimientos"
+            component={ProcedureDescription}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="ConfirmacionConsulta"
+            component={ConsultationConfirmation}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="ConfirmacionProcedimiento"
+            component={ProcedureConfirmation}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="Confirmado"
+            component={ConfirmationPage}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="MiAgenda"
+            component={MiAgenda}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerStyle: {
+                backgroundColor: '#FCFCFC',
+              },
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="EditarCita"
+            component={EditarCita}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerStyle: {
+                backgroundColor: '#FCFCFC',
+              },
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="CitaCancelada"
+            component={CancelationConfirmation}
+            options={{ /*  */
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Servicios"
+            component={Servicios}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerStyle: {
+                backgroundColor: '#FCFCFC',
+              },
+              headerShadowVisible: false,
+            })}
+          />
+          <Stack.Screen
+            name="Perfil"
+            component={Perfil}
+            options={({ route, navigation }) => ({
+              headerShown: true,
+              headerTransparent: false,
+              headerTitle: '',
+              headerLeft: () => (<CustomHeader navigation={navigation} route={route} />),
+              headerTintColor: '#00D0B1',
+              headerTitleAlign: 'left',
+              headerStyle: {
+                backgroundColor: '#FCFCFC',
+              },
+              headerShadowVisible: false,
+            })}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AppContextProvider>
   );
 };
 

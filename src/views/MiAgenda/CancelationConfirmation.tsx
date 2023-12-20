@@ -1,17 +1,22 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { MyFont } from "../../theme/AppTheme";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../App';
 import Icons from '../../theme/Icons';
 
 const CancelationConfirmation = () => {
     const { TickCircleIcon, CalendarWhiteIcon } = Icons;
+    const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <TickCircleIcon width={80} height={80} />
                 <Text style={styles.title}>Tu cita se cancelo con exito</Text>
                 <Text style={styles.text}>Cuando desees puedes agendar nuevamente</Text>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity onPress={() => navigation.navigate("Home")} style={styles.btn}>
                     <Text style={styles.textBtn}>Agendar nueva cita</Text>
                     <CalendarWhiteIcon style={styles.iconBtn} width={16} height={16} />
                 </TouchableOpacity>

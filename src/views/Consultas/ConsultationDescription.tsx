@@ -1,16 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
 import { MyColors, MyFont } from "../../theme/AppTheme";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../App';
 import Icons from '../../theme/Icons';
+import MiCalendario from '../../components/MiCalendario';
+import PopUpError from '../../components/PopUpError';
+import { useAppContext } from '../../../AppContext';
+
+interface MiCalendarioHandles {
+    toggleModal: () => void;
+}
+
+interface PopUpErrorHandles {
+    togglePopUpError: (mesaje: string) => void;
+}
 
 const ConsultationDescription = () => {
-    const { CalendarAddIcon, ArrowDownIcon, ArrowWhiteIcon } = Icons;
+    const { CalendarAddIcon, ArrowDownIcon, ArrowWhiteIcon,  CloseIcon } = Icons;
+
+    const { fecha, setFecha, horaAgendada, setHoraAgendada, virtualPresecial, setVirtualPresecial }: any = useAppContext();
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedValue, setSelectedValue] = useState<string | null>(null);
+
+    useEffect(() => {
+        setFecha('');
+        setHoraAgendada('');
+        setVirtualPresecial('');
+    }, []); 
+
+    useEffect(() => {
+        if (selectedValue === 'Virtual') {
+            setVirtualPresecial('Virtual');
+        } else if (selectedValue === 'Presencial') {
+            setVirtualPresecial('Presencial');
+        }
+    }, [selectedValue]); 
     
     const consultationContent = {
         image: require('../../../assets/implante2.png'),
@@ -21,16 +50,41 @@ const ConsultationDescription = () => {
         
     };
 
-    const [modalVisible, setModalVisible] = useState(false);
-    const [selectedValue, setSelectedValue] = useState(null);
+    const calendarioRef = useRef<MiCalendarioHandles>(null);
 
-    const options = [
-        { label: 'Virtual', value: 'Virtual' },
-        { label: 'Presencial', value: 'Presencial' },
-      ];      
+    const abrirCalendario = () => {
+        if (calendarioRef.current) {
+          calendarioRef.current.toggleModal();
+        }
+      };
+
+    const PopUpErrorRef = useRef<PopUpErrorHandles>(null);
+
+    const abrirPopUpError = (mensaje: string) => {        
+        if (PopUpErrorRef.current) {
+            PopUpErrorRef.current.togglePopUpError(mensaje);
+          }
+    };
+
+    const verificarDatos = () => {
+        const Continuar = () => {
+            navigation.navigate("ConfirmacionConsulta");
+        }
+
+        if ((selectedValue == 'Virtual' || selectedValue == 'Presencial') && (fecha == '')) {
+            abrirPopUpError('Elige una hora y fecha');
+        } else if ((selectedValue == null) && (fecha != '')) {
+            abrirPopUpError('Elige si quieres tu cita presencial o virtual');
+        } else if ((selectedValue == null) && (fecha == '')) {
+            abrirPopUpError('Rellena los campos');
+        } else {
+            Continuar();
+        }
+    }
 
     return (
-        <View style={styles.container}>
+        <>
+            <View style={styles.container}>
             <ScrollView style={styles.scrollContainer}>
                 <Image source={consultationContent.image} style={styles.image} />
                 <View style={styles.textContainer}>
@@ -50,24 +104,24 @@ const ConsultationDescription = () => {
                         </TouchableOpacity>
 
                         <Modal
-                            animationType="slide"
                             transparent={true}
                             visible={modalVisible}
                             onRequestClose={() => setModalVisible(false)}
                         >
                             <View style={styles.modalContainer}>
                                 <View style={styles.modalContent}>
-                                    <Picker
-                                        selectedValue={selectedValue}
-                                        onValueChange={(itemValue, itemIndex) => {
-                                            setSelectedValue(itemValue);
-                                            setModalVisible(false);
-                                        }}
-                                    >
-                                        {options.map((option, index) => (
-                                            <Picker.Item key={index} label={option.label} value={option.value} />
-                                        ))}
-                                    </Picker>
+                                    <TouchableOpacity onPress={() => setModalVisible(false)} style={{position: 'absolute', top: 20, left: 20,}}>
+                                        <CloseIcon width={16} height={16} />
+                                    </TouchableOpacity>
+
+                                    <View>
+                                        <TouchableOpacity onPress={() => {setSelectedValue("Presencial"), setModalVisible(false)}} style={{paddingVertical: 2, marginVertical: 8,}}>
+                                            <Text style={{fontFamily: MyFont.regular, fontSize: 14}}>Presencial</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => {setSelectedValue("Virtual"), setModalVisible(false)}} style={{paddingVertical: 2, marginVertical: 8,}}>
+                                            <Text style={{fontFamily: MyFont.regular, fontSize: 14}}>Virtual</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
                         </Modal>
@@ -75,20 +129,23 @@ const ConsultationDescription = () => {
                     <View>
                         <View style={styles.titleModalButton}>
                             <Text style={styles.text1TitleModalButton}>Fecha de consulta </Text>
-                            <Text style={styles.text2TitleModalButton}>(Opcional)</Text>
+                            <Text style={styles.text2TitleModalButton}>(Requerido)</Text>
                         </View>                      
-                        <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.modalButton}>
-                            <Text style={styles.textModalButton}>{selectedValue ? selectedValue : 'dd/mm/aaaa'}</Text>
+                        <TouchableOpacity onPress={abrirCalendario} style={styles.modalButton}>
+                            <Text style={styles.textModalButton}>{fecha ? fecha + ' a las ' + horaAgendada : 'dd/mm/aaaa'}</Text>
                             <CalendarAddIcon style={styles.imageModalButton} width={16} height={16}/>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity onPress={() => navigation.navigate("ConfirmacionConsulta")} style={styles.button}>
+                    <MiCalendario ref={calendarioRef} onAbrirPopUpError={abrirPopUpError} />
+                    <TouchableOpacity onPress={verificarDatos} style={styles.button}>
                         <Text style={styles.textButtom}>Continuar</Text>
                         <ArrowWhiteIcon width={16} height={16} />
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-        </View>
+        </View> 
+        <PopUpError ref={PopUpErrorRef} />
+        </>
     );
 };
 
@@ -193,7 +250,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#909090',
         borderRadius: 10,
-        paddingVertical: 10,        paddingHorizontal: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         marginVertical: 10,
     },
     textModalButton: {
@@ -205,13 +263,18 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
     },
     modalContent: {
+        position: 'relative',
+        width: '70%',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
         backgroundColor: 'white',
-        width: '100%',
-        padding: 16,
+        padding: 50,
+        borderRadius: 20,
     },
 });
 
