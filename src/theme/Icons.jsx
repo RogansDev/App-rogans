@@ -47,10 +47,12 @@ import AjustesIcon from '../../assets/icons/ajustes.svg';
 import EditarIcon from '../../assets/icons/editar.svg';
 import ArrowGreen from '../../assets/icons/arrow-green.svg';
 
+import Eye from '../../assets/Eve.svg';
 
 const Icons = {
   LogoWhite,
   LineaWhite,
+  Eye,
   Facebook,
   Google,
   Apple,
