@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getEventTypes } from '../../../calendlyService';
 import { View, ScrollView, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { MyColors, MyFont } from "../../theme/AppTheme";
 import { useNavigation } from '@react-navigation/native';
@@ -11,12 +10,15 @@ import ProcedureCard from '../../components/ProcedureCard';
 import ButtonConsultationList from '../../components/BottomMasConsultas';
 import ButtonProcedureList from '../../components/BottomMasProcedimientos';
 import Icons from '../../theme/Icons';
+import { testPayment } from '../../../PaymentService';
 
 interface EventType {
   name: string;
 }
 
 const Home = () => {
+  testPayment();
+
   const { UserIcon, ProcedimientoIcon, ConsultasIcon, AgendaIcon } = Icons;
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
