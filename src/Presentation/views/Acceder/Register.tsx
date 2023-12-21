@@ -17,10 +17,11 @@ import DateTimePicker, {
 import Checkbox from "expo-checkbox";
 import UseViewModel from "./ViewModel/RegisterViewModel";
 import CustomTextInput from "../../components/CustomTextInput";
+import RoundedBottom from "../../components/RoundedBottom";
 
 const Register = () => {
   const {
-    names,
+    name,
     email,
     document,
     birthdate,
@@ -30,6 +31,7 @@ const Register = () => {
     selectValue,
     selectedDate,
     onChange,
+    register
   } = UseViewModel();
 
   const { LogoBlack, Eye, SendIcon } = Icons;
@@ -47,9 +49,9 @@ const Register = () => {
             title="Nombre Usuario"
             placeholder="Ingrese tu nombre y apelido"
             keyboardType="default"
-            value={names}
+            value={name}
             onChangeText={onChange}
-            property="names"
+            property="name"
           />
           {/* input de telefono */}
           <CustomTextInput
@@ -70,32 +72,14 @@ const Register = () => {
             property="email"
           />
           {/* documentoo  */}
-          <View style={styles.contentSelect}>
-            <View>
-              <View style={styles.labelContent}>
-                <Text style={styles.labelnombres}>Tipo de doc</Text>
-              </View>
-              <View style={styles.select}>
-                <Picker>
-                  <Picker.Item label="C.c" value="cedula" />
-                  <Picker.Item label="C.E" value="cedula de extranjeria" />
-                  <Picker.Item label="Visa" value="visa" />
-                </Picker>
-              </View>
-            </View>
-            <View>
-              <View style={styles.labelContent}>
-                <Text style={styles.labelnombres}>documento</Text>
-              </View>
-              <TextInput
-                placeholder="tu documentoo"
-                placeholderTextColor="gray"
-                keyboardType="number-pad"
-                style={styles.typeDoc}
-                value={birthdate}
-              />
-            </View>
-          </View>
+          <CustomTextInput
+            title="documento identificacion"
+            placeholder="Ingrese tu cedula"
+            keyboardType="number-pad"
+            value={document}
+            onChangeText={onChange}
+            property="document"
+          />
           {/* fecha de nacimiento */}  
           <View>
             <View style={styles.labelContent}>
@@ -146,34 +130,7 @@ const Register = () => {
             </View>
           </View>
           {/* boton de registro */}
-          <TouchableOpacity
-            style={styles.roundedBottom}
-            // onPress={() => {
-            //   handleContinue();
-            // }}
-          >
-            <View style={styles.contentNext}>
-              <Text style={styles.textBottom}>Registrarme</Text>
-              <SendIcon width={20} height={20} style={styles.icon} />
-            </View>
-          </TouchableOpacity>
-          {/* mensaje de validacion si las contraseñas coiciden */}
-          <View>
-            {/* <Text
-                // style={[
-                //   styles.message,
-                //   passwordsMatch ? styles.successText : styles.errorText,
-                // ]}
-              >
-                {menssage}
-              </Text>
-              {/* mensaje de error si es menor de edad */}
-            {/* {registrationMessage && (
-                <Text style={styles.registrationMessage}>
-                  {registrationMessage}
-                </Text>
-              )} */}
-          </View>
+           <RoundedBottom title="registrarse"  onPress={() => register()}/>
         </View>
       </View>
     </ScrollView>
