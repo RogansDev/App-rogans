@@ -7,12 +7,11 @@ const RegisterViewModel = () => {
     name: '',
     phone: '',
     email: '',
+    lastname: '',
     document: '',
     password: '',
     ConfirmPassword: '',
     birthdate: '',
-    selectValue: '',
-    selectedDate: '',
  });
 
  const onChange = (property: string, value: any) => {

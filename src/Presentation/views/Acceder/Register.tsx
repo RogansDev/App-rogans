@@ -23,13 +23,12 @@ const Register = () => {
   const {
     name,
     email,
+    lastname,
     document,
     birthdate,
     phone,
     password,
     ConfirmPassword,
-    selectValue,
-    selectedDate,
     onChange,
     register
   } = UseViewModel();
@@ -44,14 +43,25 @@ const Register = () => {
           <LogoBlack />
         </View>
         <View style={styles.form}>
-          {/* Nombres y apellidos */}
+          {/* Nombre */}
           <CustomTextInput
             title="Nombre Usuario"
-            placeholder="Ingrese tu nombre y apelido"
+            placeholder="Ingrese tu nombre "
             keyboardType="default"
             value={name}
             onChangeText={onChange}
             property="name"
+            secureTextEntry
+          />
+          {/* apellido */}
+          <CustomTextInput
+            title="apellidos"
+            placeholder="Ingrese tu  apelido"
+            keyboardType="default"
+            value={lastname}
+            onChangeText={onChange}
+            property="lastname"
+            secureTextEntry
           />
           {/* input de telefono */}
           <CustomTextInput
@@ -157,7 +167,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignContent: "center",
-    gap: 10,
+    gap: 1,
   },
   labelContent: {
     alignItems: "center",
