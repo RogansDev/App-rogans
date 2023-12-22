@@ -1,5 +1,6 @@
 export interface ResponseAPIRogans {
     success: boolean;
     message: string;
-    data:    any;
+    data?:    any;
+    error?:    any;
 };

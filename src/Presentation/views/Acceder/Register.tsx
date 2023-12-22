@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
+  Animated,
+  ToastAndroid
 } from "react-native";
 import Icons from "../../../Presentation/theme/Icons";
 import { Picker } from "@react-native-picker/picker";
@@ -20,6 +22,8 @@ import CustomTextInput from "../../components/CustomTextInput";
 import RoundedBottom from "../../components/RoundedBottom";
 
 const Register = () => {
+  const scrollY = useRef(new Animated.Value(0)).current;
+
   const {
     name,
     email,
@@ -30,119 +34,135 @@ const Register = () => {
     password,
     ConfirmPassword,
     onChange,
-    register
+    register,
+    errorMessage,
   } = UseViewModel();
+
+  // verifica que todos los campos esten para llenos si no vota un error 
+  useEffect(() => {
+    if(errorMessage != ''){
+      ToastAndroid.show(errorMessage, ToastAndroid.LONG)
+    }
+  }, [errorMessage])
 
   const { LogoBlack, Eye, SendIcon } = Icons;
 
+  const handleRegister = () => {
+    register();
+  };
+
   return (
-    <ScrollView style={styles.container}>
-      {/* contenedor de formulario */}
-      <View style={styles.contentForm}>
-        <View style={styles.logoContainer}>
-          <LogoBlack />
-        </View>
-        <View style={styles.form}>
-          {/* Nombre */}
-          <CustomTextInput
-            title="Nombre Usuario"
-            placeholder="Ingrese tu nombre "
-            keyboardType="default"
-            value={name}
-            onChangeText={onChange}
-            property="name"
-            secureTextEntry
-          />
-          {/* apellido */}
-          <CustomTextInput
-            title="apellidos"
-            placeholder="Ingrese tu  apelido"
-            keyboardType="default"
-            value={lastname}
-            onChangeText={onChange}
-            property="lastname"
-            secureTextEntry
-          />
-          {/* input de telefono */}
-          <CustomTextInput
-            title="Telefono"
-            placeholder="Ingrese tu celular"
-            keyboardType="phone-pad"
-            value={phone}
-            onChangeText={onChange}
-            property="phone"
-          />
-          {/* correo electronico */}
-          <CustomTextInput
-            title="Correo"
-            placeholder="Ingrese tu correo"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={onChange}
-            property="email"
-          />
-          {/* documentoo  */}
-          <CustomTextInput
-            title="documento identificacion"
-            placeholder="Ingrese tu cedula"
-            keyboardType="number-pad"
-            value={document}
-            onChangeText={onChange}
-            property="document"
-          />
-          {/* fecha de nacimiento */}  
-          <View>
-            <View style={styles.labelContent}>
-              <Text style={styles.labelnombres}>Fecha de nacimiento</Text>
-            </View>
-            <View style={styles.input}>
-              {/* <Text  onPress={showDatepicker}> */}
-              {/* {selectedDate
-                  ? selectedDate.toDateString()
-                  : "Selecciona una fecha"} */}
-              {/* </Text> */}
-              {/* logica de calendario pendiente */}
-            </View>
+    <ScrollView
+      style={styles.container}
+    >
+        {/* contenedor de formulario */}
+        <View style={styles.contentForm}>
+          <View style={styles.logoContainer}>
+            <LogoBlack style={styles.logo}/>
           </View>
-          {/* contraseñas */}
-          <CustomTextInput
-            title="Contraseña"
-            placeholder="Ingrese tu contraseña"
-            keyboardType="default"
-            value={password}
-            onChangeText={onChange}
-            property="password"
-          />
-          {/* confirmar contraseña */}
-          <CustomTextInput
-            title="Confirmar contraseña"
-            placeholder="Confirmar la contraseña"
-            keyboardType="default"
-            value={ConfirmPassword}
-            onChangeText={onChange}
-            property="ConfirmPassword"
-          />
-          {/* acepto terminos */}
-          <View style={styles.Accept}>
-            <Checkbox
-              // value={isChecked}
-              // onValueChange={handleCheckBoxChange}
-              style={styles.checkbox}
+          <View style={styles.form}>
+            {/* Nombre */}
+            <CustomTextInput
+              title="Nombre Usuario"
+              placeholder="Ingrese tu nombre "
+              keyboardType="default"
+              value={name}
+              onChangeText={onChange}
+              property="name"
+              secureTextEntry
             />
-            <View style={styles.textAccept}>
-              <Text>Acepto los</Text>
-              <Text
-                style={{ textDecorationLine: "underline" }}
-                // onPress={handleAcceptTerms}
-              >
-                términos y condiciones
-              </Text>
+            {/* apellido */}
+            <CustomTextInput
+              title="apellidos"
+              placeholder="Ingrese tu  apelido"
+              keyboardType="default"
+              value={lastname}
+              onChangeText={onChange}
+              property="lastname"
+              secureTextEntry
+            />
+            {/* input de telefono */}
+            <CustomTextInput
+              title="Telefono"
+              placeholder="Ingrese tu celular"
+              keyboardType="phone-pad"
+              value={phone}
+              onChangeText={onChange}
+              property="phone"
+            />
+            {/* correo electronico */}
+            <CustomTextInput
+              title="Correo"
+              placeholder="Ingrese tu correo"
+              keyboardType="email-address"
+              value={email}
+              onChangeText={onChange}
+              property="email"
+            />
+            {/* documentoo  */}
+            <CustomTextInput
+              title="documento identificacion"
+              placeholder="Ingrese tu cedula"
+              keyboardType="number-pad"
+              value={document}
+              onChangeText={onChange}
+              property="document"
+            />
+            {/* fecha de nacimiento */}
+            <View>
+              <View style={styles.labelContent}>
+                <Text style={styles.labelnombres}>Fecha de nacimiento</Text>
+              </View>
+              <View style={styles.input}>
+                {/* <Text  onPress={showDatepicker}> */}
+                {/* {selectedDate
+                    ? selectedDate.toDateString()
+                    : "Selecciona una fecha"} */}
+                {/* </Text> */}
+                {/* logica de calendario pendiente */}
+              </View>
             </View>
+            {/* contraseñas */}
+            <CustomTextInput
+              title="Contraseña"
+              placeholder="Ingrese tu contraseña"
+              keyboardType="default"
+              value={password}
+              onChangeText={onChange}
+              property="password"
+              secureTextEntry={true}
+            />
+            {/* confirmar contraseña */}
+            <CustomTextInput
+              title="Confirmar contraseña"
+              placeholder="Confirmar la contraseña"
+              keyboardType="default"
+              value={ConfirmPassword}
+              onChangeText={onChange}
+              property="ConfirmPassword"
+              secureTextEntry
+            />
+            {/* acepto terminos */}
+            <View style={styles.Accept}>
+              <Checkbox
+                // value={isChecked}
+                // onValueChange={handleCheckBoxChange}
+                style={styles.checkbox}
+              />
+              <View style={styles.textAccept}>
+                <Text>Acepto los</Text>
+                <Text
+                  style={{ textDecorationLine: "underline" }}
+                  // onPress={handleAcceptTerms}
+                >
+                  términos y condiciones
+                </Text>
+              </View>
+            </View>
+            {/* boton de registro */}
+            <RoundedBottom title="registrarse" onPress={() => register() }/>
           </View>
-          {/* boton de registro */}
-           <RoundedBottom title="registrarse"  onPress={() => register()}/>
-        </View>
-      </View>
+        </View> 
     </ScrollView>
   );
 };
@@ -155,19 +175,26 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignSelf: "center",
   },
+  logo: {
+    zIndex: 20,
+  },
   contentForm: {
     display: "flex",
     justifyContent: "center",
-    gap: 20,
+    gap: 10,
     position: "relative",
     marginTop: 90,
     padding: 20,
+    bottom: 69,
   },
   form: {
     display: "flex",
     justifyContent: "center",
     alignContent: "center",
     gap: 1,
+    width: "100%",
+    height: "100%",
+    zIndex: 60,
   },
   labelContent: {
     alignItems: "center",

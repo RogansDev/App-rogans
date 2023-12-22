@@ -77,7 +77,7 @@ const App = () => {
   return (
     <AppContextProvider>
       <NavigationContainer >
-        <Stack.Navigator>
+        <Stack.Navigator >
       
           <Stack.Screen 
             name="FIrstScreen" 
@@ -180,13 +180,12 @@ const App = () => {
             component={Register} 
             options={{
               headerShown: true,
-              headerTransparent: true,
+              
               headerTitle: 'Registrarse',
               headerTitleStyle: {
                 color: 'black',
               },
               headerTintColor: MyColors.primary,
-              headerTitleAlign: 'center',
             }}
           />
           <Stack.Screen
