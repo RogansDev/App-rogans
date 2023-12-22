@@ -39,7 +39,7 @@ const CustomTextInput = ({
       keyboardType={keyboardType}
       style={styles.formTextInput}
       value={value}
-      secureTextEntry
+      secureTextEntry={false}
       onChangeText={(text) => onChangeText(property, text)}
     />
   </View>
