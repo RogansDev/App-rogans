@@ -53,6 +53,7 @@ import Check from '../../../assets/icons/password-check.svg';
 import Phone from "../../../assets/mobile.svg";
 import Email from "../../../assets/sms.svg";
 import UpdatePassword from '../../../assets/icons/password-check.svg';
+import ArrowGreen from '../../../assets/icons/arrow-green.svg';
 
 const Icons = {
   LogoWhite,
@@ -110,6 +111,7 @@ const Icons = {
   UbicacionIcon,
   AjustesIcon,
   EditarIcon,
+  ArrowGreen,
 };
 
 export default Icons;

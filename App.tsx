@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Alert, Linking } from "react-native";
 import { fetchFonts, MyColors } from "./src/Presentation/theme/AppTheme";
 import CustomHeader from "./src/Presentation/components/CustomHeader";
 import CustomHeaderTransparent from "./src/Presentation/components/CustomHeaderTransparent";
@@ -23,6 +23,7 @@ import ProcedureDescription from "./src/Presentation/views/Procedimientos/Proced
 import ConsultationConfirmation from "./src/Presentation/views/Consultas/ConsultationConfirmation";
 import ProcedureConfirmation from "./src/Presentation/views/Procedimientos/ProcedureConfirmation";
 import ConfirmationPage from "./src/Presentation/views/Consultas/ConfirmationPage";
+import DeniedPage from "./src/Presentation/views/Consultas/DeniedPage";
 import MiAgenda from "./src/Presentation/views/MiAgenda/MiAgenda";
 import EditarCita from "./src/Presentation/views/MiAgenda/EditarCita";
 import CancelationConfirmation from "./src/Presentation/views/MiAgenda/CancelationConfirmation";
@@ -50,6 +51,7 @@ export type RootStackParamsList = {
   ConfirmacionConsulta: undefined;
   ConfirmacionProcedimiento: undefined;
   Confirmado: undefined;
+  Rechazado: undefined;
   MiAgenda: undefined;
   EditarCita: undefined;
   CitaCancelada: undefined;
@@ -277,6 +279,13 @@ const App = () => {
           <Stack.Screen
             name="Confirmado"
             component={ConfirmationPage}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Rechazado"
+            component={DeniedPage}
             options={{
               headerShown: false,
             }}

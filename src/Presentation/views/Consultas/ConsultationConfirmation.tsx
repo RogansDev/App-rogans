@@ -7,27 +7,6 @@ import { RootStackParamsList } from '../../../../App';
 import { MyColors, MyFont } from "../../../Presentation/theme/AppTheme";
 import Icons from '../../../Presentation/theme/Icons';
 import { agendarCita } from '../../../../agendarCitaService';
-import MiCalendario from '../../../Presentation/components/MiCalendario';
-
-const agendarBtnHandler = () => {
-    const fechaActual = new Date();
-    const fechaFormateada = fechaActual.toISOString().split('.')[0] + "Z";;
-
-    const datosCita = {
-        "fecha_que_agendo": fechaFormateada,
-        "nombre": "Martin Montes/&123456780",
-        "telefono": "Número de teléfono",
-        "correo": "Correo electrónico",
-        "evento_agendado": "Botox",
-        "fecha": "2024-01-01T14:30:00Z",
-        "especialidad": "Especialidad seleccionada",
-        "notas": "Notas adicionales",
-        "status": "Confirmado"
-    };
-
-    agendarCita(datosCita)
-};
-
 
 const ConsultationConfirmation = () => {
     const { VirtualIcon, NextIcon, CalendarIcon, ProfileIcon, ClockIcon, CardsIcon, CalendarWhiteIcon } = Icons;

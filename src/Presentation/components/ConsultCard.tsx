@@ -14,7 +14,7 @@ const ConsultCard = ({cards}: any) => {
   return (
     <ScrollView horizontal style={styles.cardContainer} showsHorizontalScrollIndicator={false}>
       {cards.map((card: { category: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; image: ImageSourcePropType; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
-        <View key={index} style={styles.card}>
+        <TouchableOpacity onPress={() => navigation.navigate("DescripcionConsultas")} key={index} style={styles.card}>
           <Text style={styles.cardCategory}>{card.category}</Text>
           <Image source={card.image} style={styles.cardImage} />
           <Text style={styles.cardText}>{card.title}</Text>
@@ -22,7 +22,7 @@ const ConsultCard = ({cards}: any) => {
             <Text style={styles.textAgendarBtn}>Agendar cita</Text>
             <AgendarIcon style={styles.iconAgendarBtn} width={16} height={16}/>
           </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );

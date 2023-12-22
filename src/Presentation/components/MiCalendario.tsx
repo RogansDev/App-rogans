@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } f
 import { View, Text, Animated, Modal, TouchableOpacity, Dimensions, Platform, StyleSheet } from 'react-native';
 import { MyColors, MyFont } from "../theme/AppTheme";
 import {LocaleConfig, Calendar} from 'react-native-calendars';
-import { useAppContext } from '../../AppContext';
+import { useAppContext } from '../../../AppContext';
 import { Picker } from '@react-native-picker/picker';
 import PopUpError from './PopUpError';
 import Icons from '../theme/Icons';
@@ -364,7 +364,7 @@ const MiCalendario = forwardRef<MiCalendarioHandles, MiCalendarioProps>((props, 
                       onValueChange={(itemValue, itemIndex) => setHora(itemValue)}
                     >
                       {horasDisponiblesPicker().map((item, index) => (
-                        <Picker.Item key={index} label={item.label} value={item.value} />
+                        <Picker.Item key={index} label={item.label} value={item.value} style={styles.pickerItem} />
                       ))}
                     </Picker>
                     
@@ -373,8 +373,8 @@ const MiCalendario = forwardRef<MiCalendarioHandles, MiCalendarioProps>((props, 
                       style={styles.picker}
                       onValueChange={(itemValue, itemIndex) => setAmPm(itemValue)}
                     >
-                      <Picker.Item label="AM" value="AM" />
-                      <Picker.Item label="PM" value="PM" />
+                      <Picker.Item label="AM" value="AM" style={styles.pickerItem}  />
+                      <Picker.Item label="PM" value="PM" style={styles.pickerItem}  />
                     </Picker>
                   </View>
                 )}
@@ -438,6 +438,12 @@ const styles = StyleSheet.create({
     width: 130,
     height: 50,
     fontSize: 13,
+    color: 'black',
+    fontFamily: MyFont.regular,
+  },
+  pickerItem: {
+    fontSize: 15,
+    color: 'black',
     fontFamily: MyFont.regular,
   },
   modalPicker: {

@@ -3,6 +3,14 @@ import { View, ScrollView, Text, Image, TouchableOpacity, Modal, StyleSheet } fr
 import MiCalendario from '../../components/MiCalendario';
 import PopUpError from '../../components/PopUpError';
 import { useAppContext } from '../../../../AppContext';
+import {Picker} from '@react-native-picker/picker';
+import { MyColors, MyFont } from "../../../Presentation/theme/AppTheme";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamsList } from '../../../../App';
+import Icons from '../../../Presentation/theme/Icons';
+import * as WebBrowser from 'expo-web-browser';
+
 interface MiCalendarioHandles {
     toggleModal: () => void;
 }
@@ -10,12 +18,6 @@ interface MiCalendarioHandles {
 interface PopUpErrorHandles {
     togglePopUpError: (mesaje: string) => void;
 }
-import {Picker} from '@react-native-picker/picker';
-import { MyColors, MyFont } from "../../../Presentation/theme/AppTheme";
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamsList } from '../../../../App';
-import Icons from '../../../Presentation/theme/Icons';
 
 const ConsultationDescription = () => {
     const { CalendarAddIcon, ArrowDownIcon, ArrowWhiteIcon,  CloseIcon } = Icons;
@@ -45,7 +47,7 @@ const ConsultationDescription = () => {
         image: require('../../../../assets/implante2.png'),
         title: 'Trasplante capilar',
         oldPrice: '$50.000',
-        price: 'Gratis',
+        price: '50000',
         description: 'Descripción del procedimiento o consulta.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         
     };
@@ -66,11 +68,56 @@ const ConsultationDescription = () => {
           }
     };
 
-    const verificarDatos = () => {
-        const Continuar = () => {
-            navigation.navigate("ConfirmacionConsulta");
+    const iniciarProcesoDePago = () => {
+        const generarReferenceCode = () => {
+          const ahora = new Date();
+          // Generar un número aleatorio y convertirlo a string en base 36
+          const randomId = Math.random().toString(36).substr(2, 9);
+        
+          // Formatear la fecha y hora en un string y combinarlo con el identificador único
+          const referenceCode = `rogans_${ahora.toISOString()}_${randomId}`;
+        
+          return referenceCode;
+        };
+        
+        const uniqueReferenceCode = generarReferenceCode();
+      
+        interface DatosTransaccion {
+          description: string;
+          referenceCode: string
+          amount: string;
+          tax: string;
+          taxReturnBase: string;
+          currency: string;
+          buyerEmail: string;
+          fechaAgendada: string;
+          horaAgendada: string;
+          modalidad: string;
         }
+      
+        const datosTransaccion : DatosTransaccion = {
+          description: consultationContent.title,
+          referenceCode: uniqueReferenceCode,
+          amount: consultationContent.price,
+          tax: "0",
+          taxReturnBase: "0",
+          currency: "COP",
+          buyerEmail: "cliente1@rogansya.com",
+          fechaAgendada: fecha,
+          horaAgendada: horaAgendada,
+          modalidad: selectedValue,
+        };
+        
+        const queryString = Object.entries(datosTransaccion)
+        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+        .join('&');
+      
+        const urlFinal = `https://rogansya.com/pagos/?${queryString}`;
+    
+        WebBrowser.openBrowserAsync(urlFinal);
+      };
 
+    const verificarDatos = () => {
         if ((selectedValue == 'Virtual' || selectedValue == 'Presencial') && (fecha == '')) {
             abrirPopUpError('Elige una hora y fecha');
         } else if ((selectedValue == null) && (fecha != '')) {
@@ -78,7 +125,7 @@ const ConsultationDescription = () => {
         } else if ((selectedValue == null) && (fecha == '')) {
             abrirPopUpError('Rellena los campos');
         } else {
-            Continuar();
+            iniciarProcesoDePago();
         }
     }
 

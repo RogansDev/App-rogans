@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { getEventTypes } from '../';
-import { View, ScrollView, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, ScrollView, Text, TouchableOpacity, Alert, Linking, StyleSheet } from "react-native";
 import { MyColors, MyFont } from "../../../Presentation/theme/AppTheme";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -11,15 +11,56 @@ import ProcedureCard from '../../../Presentation/components/ProcedureCard';
 import ButtonConsultationList from '../../../Presentation/components/BottomMasProcedimientos';
 import Icons from '../../../Presentation/theme/Icons';
 import ButtonProcedureList from '../../components/BottomMasProcedimientos';
+import * as WebBrowser from 'expo-web-browser';
 
 interface EventType {
   name: string;
 }
 
 const Home = () => {
+  useEffect(() => {
+    const handleDeepLink = (event: { url: any; }) => {
+      const url = event.url;
+      let queryParams = url.split('?')[1];
+      let data = {};
+      queryParams.split('&').forEach((param: { split: (arg0: string) => [any, any]; }) => {
+        let [key, value] = param.split('=');
+        data[key] = decodeURIComponent(value);
+      });
+
+      // Cerrar el navegador web
+      WebBrowser.dismissBrowser();
+      
+      // Verificar el estado y ejecutar la función correspondiente
+      if (data.estado === 'exitoso') {
+        pagoConfirmado();
+      } else if (data.estado === 'rechazado') {
+        pagoRechazado();
+      }
+    };
+  
+    // Añade el event listener
+    const subscription = Linking.addEventListener('url', handleDeepLink);
+  
+    // Limpia el listener al desmontar
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  const pagoConfirmado = () => {
+    navigation.navigate("Confirmado");
+  }
+
+  function pagoRechazado() {
+    navigation.navigate("Rechazado");
+  }
+
   const { UserIcon, ProcedimientoIcon, ConsultasIcon, AgendaIcon } = Icons;
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
+
+  const [metodosDePago, setMetodosDePago] = useState([]);
 
   const consultCards = [
     { category: 'Capilar', image: require('../../../../assets/implante.png'), title: 'Implantes\ncapilares' },
@@ -41,7 +82,7 @@ const Home = () => {
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Hola Juanito</Text>
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate("Perfil")} style={styles.iconContainer}>
+          <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate("Perfil")}>
             <UserIcon width={27} height={27}/>
           </TouchableOpacity>
         </View>
@@ -109,7 +150,10 @@ const styles = StyleSheet.create({
     fontFamily: MyFont.bold,
   },
   iconContainer: {
+    position:'relative',
     marginLeft: 16,
+    width: 27,
+    height: 27,
   },
   userIcon: {
     width: 27,
