@@ -6,6 +6,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../../App';
 import FloatingMenu from '../../../Presentation/components/FloatingMenu';
 import Icons from '../../../Presentation/theme/Icons';
+import { procedureCards } from '../Servicios/ServicesData';
+import { useAppContext } from '../../../../AppContext';
 
 
 const Cosultationlist = () => {
@@ -13,31 +15,37 @@ const Cosultationlist = () => {
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
-  const ProcedureItems = [
-    { image: require('../../../../assets/botox2.png'), title: 'Botox Full face' },
-    { image: require('../../../../assets/botox2.png'), title: 'Botox Full face' },
-    { image: require('../../../../assets/botox2.png'), title: 'Botox Full face' },
-    { image: require('../../../../assets/botox2.png'), title: 'Botox Full face' },
-    { image: require('../../../../assets/botox2.png'), title: 'Botox Full face' },
-    { image: require('../../../../assets/botox2.png'), title: 'Botox Full face' },
-  ];
+  const { selectedCard, setSelectedCard } = useAppContext();
+
+  const handleSelectCard = async (card: any) => {
+    setSelectedCard(card)
+    navigation.navigate('DescripcionProcedimientos');
+  };
+
+
     return (
       <View style={styles.container}>
         <FloatingMenu />
         <ScrollView>
             <Text style={styles.title}>Procedimientos para ti</Text>
             <View style={styles.proceduresContainer}>
-            {ProcedureItems.map((item, index) => (
+            {procedureCards.map((item, index) => (
               <View key={index} style={styles.procedure}>
-                  <Image source={item.image} style={styles.procedureImage} />
+                  <TouchableOpacity onPress={() => handleSelectCard(item)}>
+                    <Image source={item.image} style={styles.procedureImage} />
+                  </TouchableOpacity>
                   <View style={styles.procedureInfo}>
-                    <Text style={styles.procedureTitle}>{item.title}</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate("DescripcionProcedimientos")} style={styles.agendarBtn}>
-                      <CalendarEditIcon style={styles.iconAgendarBtn} width={16} height={16}/>
-                      <Text style={styles.textAgendarBtn}>
-                        Agendar
-                      </Text>
-                    </TouchableOpacity>
+                    <View>
+                      <Text style={styles.procedureTitle}>{item.title}</Text>
+                    </View>
+                    <View>
+                      <TouchableOpacity onPress={() => handleSelectCard(item)} style={styles.agendarBtn}>
+                        <CalendarEditIcon style={styles.iconAgendarBtn} width={16} height={16}/>
+                        <Text style={styles.textAgendarBtn}>
+                          Agendar
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
               </View>
             ))}
@@ -66,14 +74,17 @@ const styles = StyleSheet.create({
       paddingHorizontal: 16,
     },
     procedure: {
+      flex: 1,
       flexDirection: 'row',
       backgroundColor: 'white',
       borderRadius: 15,
       marginBottom: 12,
+      minHeight: 125,
     },
     procedureInfo: {
       flex: 1,
       flexDirection: 'column',
+      justifyContent: 'space-between',
       paddingTop: 20,
       paddingRight: 25,
       paddingLeft: 15,
@@ -81,7 +92,7 @@ const styles = StyleSheet.create({
     },
     procedureImage: {
       width: 143,
-      height: 111,
+      height: '100%',
       borderRadius: 15,
     },
 
@@ -89,7 +100,6 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontFamily: MyFont.medium,
       color: '#404040',
-      marginBottom: 30,
     },
     // Estilos boton agendar:
     agendarBtn: {

@@ -3,30 +3,23 @@ import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-nativ
 import { MyColors, MyFont } from "../theme/AppTheme";
 import Icons from '../theme/Icons';
 
-const SearchBar = ({ onSearch }: any) => {
-    const { LupaIcon, BulletPoint } = Icons;
+const SearchBar = ({ onSearch, resetSearch, isSearchVisible, toggleSearchBar }: any) => {
+    const { LupaIcon, BulletPoint, CloseIcon } = Icons;
 
     const [searchQuery, setSearchQuery] = useState('');
-    const [isSearchVisible, setIsSearchVisible] = useState(false);
     const inputRef = useRef<TextInput | null>(null);
-
-    const toggleSearchBar = () => {
-        setIsSearchVisible(!isSearchVisible);
-        if (!isSearchVisible && inputRef.current) {
-            inputRef.current.focus();
-        }
-    };
 
     const handleSearch = () => {
         onSearch(searchQuery);
     };
-
+    
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={toggleSearchBar} style={styles.icon}>
                 <LupaIcon width={20} height={20}/>
             </TouchableOpacity>
             {isSearchVisible ? (
+                <>
                 <TextInput
                     ref={inputRef}
                     style={styles.input}
@@ -35,6 +28,10 @@ const SearchBar = ({ onSearch }: any) => {
                     onChangeText={setSearchQuery}
                     onSubmitEditing={handleSearch}
                 />
+                <TouchableOpacity onPress={resetSearch} style={styles.icon}>
+                    <CloseIcon width={16} height={16}/>
+                </TouchableOpacity>
+                </>
             ) : (
                 <View>
                     <Text style={styles.infoTitle}>¿Qué especialidad buscas?</Text>

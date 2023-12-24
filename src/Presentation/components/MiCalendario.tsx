@@ -196,15 +196,27 @@ const MiCalendario = forwardRef<MiCalendarioHandles, MiCalendarioProps>((props, 
     setHoraAgendada(hora + ' ' + amPm);
   }
 
+  function formatearFechaISO(fecha: any) {
+    const año = fecha.getFullYear();
+    const mes = fecha.getMonth() + 1; // getMonth() retorna un valor de 0 a 11
+    const día = fecha.getDate();
+  
+    // Asegurarse de que el mes y el día sean de dos dígitos
+    const mesFormateado = mes < 10 ? `0${mes}` : mes;
+    const díaFormateado = día < 10 ? `0${día}` : día;
+  
+    return `${año}-${mesFormateado}-${díaFormateado}`;
+  }
+  
   const marcarDomingos = () => {
-    let fechas: MarcaFecha = {};
+    let fechas: any = {};
     let fecha = new Date();
     let fin = new Date();
     fin.setFullYear(fecha.getFullYear() + 2);
   
     while (fecha <= fin) {
       if (fecha.getDay() === 0) {
-        const claveFecha = fecha.toISOString().split('T')[0];
+        const claveFecha = formatearFechaISO(fecha);
         fechas[claveFecha] = { disabled: true, disableTouchEvent: true };
       }
       fecha.setDate(fecha.getDate() + 1);

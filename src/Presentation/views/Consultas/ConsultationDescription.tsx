@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, Text, Image, TouchableOpacity, Modal, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, Image, TouchableOpacity, Modal, Linking, StyleSheet } from 'react-native';
 import MiCalendario from '../../components/MiCalendario';
 import PopUpError from '../../components/PopUpError';
 import { useAppContext } from '../../../../AppContext';
@@ -10,6 +10,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../../App';
 import Icons from '../../../Presentation/theme/Icons';
 import * as WebBrowser from 'expo-web-browser';
+import { agendarCita } from '../../../../agendarCitaService';
 
 interface MiCalendarioHandles {
     toggleModal: () => void;
@@ -22,13 +23,13 @@ interface PopUpErrorHandles {
 const ConsultationDescription = () => {
     const { CalendarAddIcon, ArrowDownIcon, ArrowWhiteIcon,  CloseIcon } = Icons;
 
-    const { fecha, setFecha, horaAgendada, setHoraAgendada, virtualPresecial, setVirtualPresecial }: any = useAppContext();
+    const { fecha, setFecha, horaAgendada, setHoraAgendada, virtualPresecial, setVirtualPresecial, selectedCard, setSelectedCard }: any = useAppContext();
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
-
+    
     useEffect(() => {
         setFecha('');
         setHoraAgendada('');
@@ -46,10 +47,12 @@ const ConsultationDescription = () => {
     const consultationContent = {
         image: require('../../../../assets/implante2.png'),
         title: 'Trasplante capilar',
-        oldPrice: '$50.000',
-        price: '50000',
-        description: 'Descripción del procedimiento o consulta.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        
+        oldPrice: '$80.000',
+        description:
+            "En Rogans entendemos lo desafiante que puede ser lidiar con la pérdida de cabello y sus efectos en la autoestima y la confianza. Te ofrecemos un enfoque integral y experto para abordar la alopecia y ayudarlo a recuperar su cabello y su confianza.",
+        duracion_cita: "30 minutos",
+        precio: "50000",
+        category: 'Capilar',
     };
 
     const calendarioRef = useRef<MiCalendarioHandles>(null);
@@ -92,13 +95,14 @@ const ConsultationDescription = () => {
           buyerEmail: string;
           fechaAgendada: string;
           horaAgendada: string;
-          modalidad: string;
+          modalidad: string | null;
+          duracion_cita: string,
         }
       
         const datosTransaccion : DatosTransaccion = {
-          description: consultationContent.title,
+          description: selectedCard.title,
           referenceCode: uniqueReferenceCode,
-          amount: consultationContent.price,
+          amount: selectedCard.precio_cita,
           tax: "0",
           taxReturnBase: "0",
           currency: "COP",
@@ -106,7 +110,8 @@ const ConsultationDescription = () => {
           fechaAgendada: fecha,
           horaAgendada: horaAgendada,
           modalidad: selectedValue,
-        };
+          duracion_cita: selectedCard.duracion_cita,
+        };        
         
         const queryString = Object.entries(datosTransaccion)
         .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
@@ -115,7 +120,55 @@ const ConsultationDescription = () => {
         const urlFinal = `https://rogansya.com/pagos/?${queryString}`;
     
         WebBrowser.openBrowserAsync(urlFinal);
-      };
+    };
+    
+    const agendarHandler = async () => {
+        const fechaActual = new Date();
+        const fechaFormateada = fechaActual.toISOString().split('.')[0] + "Z";
+
+        function convertirFechaYHora(fecha: any, horaAgendada: any) {
+            // Convertir a formato de 24 horas
+            const [hora, minutos, ampm] = horaAgendada.match(/(\d+):(\d+) (\w+)/).slice(1);
+            let hora24 = ampm === 'PM' ? parseInt(hora, 10) + 12 : parseInt(hora, 10);
+            if (hora24 === 24) hora24 = 12;
+            if (hora24 === 12 && ampm === 'AM') hora24 = 0;
+          
+            const fechaHora = new Date(`${fecha} ${hora24}:${minutos}:00`);
+          
+            fechaHora.setHours(fechaHora.getHours());
+          
+            return fechaHora.toISOString().replace('.000', '');
+        }
+    
+        const fechaAgendadaFormateada = convertirFechaYHora(fecha, horaAgendada);
+    
+        const datosCita = {
+            "fecha_que_agendo": fechaFormateada,
+            "nombre": "Martin Montes/&123456780",
+            "telefono": "Número de teléfono",
+            "correo": "Correo electrónico",
+            "evento_agendado": selectedCard.title,
+            "fecha": fechaAgendadaFormateada,
+            "especialidad": selectedCard.title,
+            "notas": virtualPresecial,
+            "status": "Pendiente",
+            "valor": selectedCard.precio_cita
+        };
+    
+        try {
+            const respuesta = await agendarCita(datosCita);
+            if (respuesta.mensaje === "Cita agendada") {
+                console.log("Cita agendada");
+                
+            } else {
+                console.log("Error al agendar cita:", respuesta);
+                // Manejar la respuesta no exitosa aquí
+            }
+        } catch (error) {
+            console.error("Error al llamar a agendarCita", error);
+            // Manejar el error de red aquí
+        }
+    };
 
     const verificarDatos = () => {
         if ((selectedValue == 'Virtual' || selectedValue == 'Presencial') && (fecha == '')) {
@@ -125,20 +178,41 @@ const ConsultationDescription = () => {
         } else if ((selectedValue == null) && (fecha == '')) {
             abrirPopUpError('Rellena los campos');
         } else {
-            iniciarProcesoDePago();
+            if(selectedCard.precio_cita === 'Gratis') {
+                agendarHandler();
+                navigation.navigate("Confirmado");
+            } else {
+                agendarHandler();
+                iniciarProcesoDePago();
+            }
         }
+    }
+
+    function formatearPrecio(numeroStr: any) {
+        if (!/^\d+$/.test(numeroStr)) {
+          return numeroStr;
+        }
+      
+        let caracteres = numeroStr.split('');
+        caracteres.reverse();
+      
+        for (let i = 3; i < caracteres.length; i += 4) {
+          caracteres.splice(i, 0, '.');
+        }
+      
+        return ('$' + caracteres.reverse().join(''));
     }
 
     return (
         <>
             <View style={styles.container}>
             <ScrollView style={styles.scrollContainer}>
-                <Image source={consultationContent.image} style={styles.image} />
+                <Image source={selectedCard.image} style={styles.image} />
                 <View style={styles.textContainer}>
-                    <Text style={styles.title}>{consultationContent.title}</Text>
-                    <Text style={styles.oldPrice}>{consultationContent.oldPrice}</Text>
-                    <Text style={styles.price}>{consultationContent.price}</Text>
-                    <Text style={styles.description}>{consultationContent.description}</Text>
+                    <Text style={styles.title}>{selectedCard.title}</Text>
+                    <Text style={styles.text}>Valor consulta</Text>
+                    <Text style={styles.price}>{formatearPrecio(selectedCard.precio_cita)}</Text>
+                    <Text style={styles.description}>{selectedCard.description}</Text>
                     <Text style={styles.title2}>Agenda tu consulta</Text>
                     <View>
                         <View style={styles.titleModalButton}>
@@ -209,8 +283,10 @@ const styles = StyleSheet.create({
         position: 'relative',
         zIndex: 1,
         width: '100%',
+        height: 350,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+        
     },
     textContainer: {
         position: 'relative',
@@ -229,7 +305,13 @@ const styles = StyleSheet.create({
       fontFamily: MyFont.bold,
       color: 'black',
       marginTop: 50,
-      marginBottom: 15,
+      marginBottom: 6,
+    },
+    text: {
+        marginTop: 8,
+        fontSize: 13,
+        fontFamily: MyFont.regular,
+        color: '#909090',
     },
     oldPrice: {
         fontSize: 13,
@@ -246,8 +328,8 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: MyFont.medium,
         color: '#909090',
-        marginTop: 30,
-        marginBottom: 70,
+        marginTop: 15,
+        marginBottom: 30,
     },
     title2: {
         fontSize: 18,

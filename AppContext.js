@@ -6,6 +6,7 @@ export const AppContextProvider = ({ children }) => {
   const [fecha, setFecha] = useState('');
   const [horaAgendada, setHoraAgendada] = useState('');
   const [virtualPresecial, setVirtualPresecial] = useState('');
+  const [selectedCard, setSelectedCard] = useState('');
 
   const value = {
     fecha,
@@ -13,7 +14,9 @@ export const AppContextProvider = ({ children }) => {
     horaAgendada,
     setHoraAgendada,
     virtualPresecial,
-    setVirtualPresecial
+    setVirtualPresecial,
+    selectedCard,
+    setSelectedCard
   };
 
   return (

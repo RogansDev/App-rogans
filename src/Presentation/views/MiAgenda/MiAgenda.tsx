@@ -42,6 +42,7 @@ const MiAgenda = () => {
         fecha: string;
         evento_agendado: string;
         status: string;
+        valor: string;
     }
 
     const [citas, setCitas] = useState<Cita[]>([]);
@@ -79,9 +80,24 @@ const MiAgenda = () => {
             console.error('Error al cancelar cita:', error);
         }
     };
+
+    function formatearPrecio(numeroStr: any) {
+        if (!/^\d+$/.test(numeroStr)) {
+          return numeroStr;
+        }
+      
+        let caracteres = numeroStr.split('');
+        caracteres.reverse();
+      
+        for (let i = 3; i < caracteres.length; i += 4) {
+          caracteres.splice(i, 0, '.');
+        }
+      
+        return ('$' + caracteres.reverse().join(''));
+    }
     
-    const citasNoCanceladas = citas.filter(cita => cita.status !== 'Cancelado');
-    const citasCanceladas = citas.filter(cita => cita.status !== 'Confirmado');
+    const citasNoCanceladas = citas.filter(cita => cita.status === 'Confirmado' || cita.status === 'Pendiente');
+    const citasCanceladas = citas.filter(cita => cita.status === 'Cancelado' || cita.status === 'Finalizada');
 
     return (
         <View style={styles.container}>
@@ -105,7 +121,7 @@ const MiAgenda = () => {
                                                 <Text style={styles.text}>{mes}</Text>
                                             </View>
                                         </View>
-                                        <View style={{flexDirection: 'column', alignItems: 'flex-start', flex: 1, marginLeft: 15, gap: 2,}}>
+                                        <View style={{flexDirection: 'column', alignItems: 'flex-start', flex: 1, marginLeft: 15, paddingRight: 15, gap: 2,}}>
                                             <Text style={styles.titleCita}>{cita.evento_agendado}</Text>
                                             <View style={{flexDirection: 'row', alignItems: 'center', gap: 5,}}>
                                                 <ClockIcon width={14} height={14} />
@@ -113,15 +129,19 @@ const MiAgenda = () => {
                                             </View>
                                             <View style={{flexDirection: 'row', alignItems: 'center', gap: 5,}}>
                                                 <DollarIcon width={14} height={14} />
-                                                <Text style={styles.text}>$1´500.000</Text>
+                                                <Text style={styles.text}>{formatearPrecio(cita.valor)}</Text>
                                             </View>
                                         </View>
-                                        <View style={{justifyContent: 'center', alignItems: 'flex-end',}}>
-                                            <Text style={[styles.text, {color: '#00D0B1',}]}>{cita.status === 'Confirmado' ? 'Agendada': ''}</Text>
-                                            <TouchableOpacity style={styles.cancelarBtn} onPress={() => {setModalVisible(true), setCancelacion(cita.fecha)}}>
-                                                <TrashIcon width={16} height={16}/>
-                                                <Text style={styles.text}>Cancelar</Text>
-                                            </TouchableOpacity>
+                                        <View style={{flexDirection: 'column', height: '100%', justifyContent: 'space-between', alignItems: 'flex-end', paddingVertical: 7}}>
+                                            <View>
+                                                <Text style={[styles.text, {color: '#00D0B1'}]}>Agendada</Text>
+                                            </View>
+                                            <View>
+                                                <TouchableOpacity style={styles.cancelarBtn} onPress={() => {setModalVisible(true), setCancelacion(cita.fecha)}}>
+                                                    <TrashIcon width={16} height={16}/>
+                                                    <Text style={styles.text}>Cancelar</Text>
+                                                </TouchableOpacity>
+                                            </View>
                                         </View>
                                     </View>
                                 )
@@ -150,7 +170,7 @@ const MiAgenda = () => {
                                                 <Text style={styles.text}>{mes}</Text>
                                             </View>
                                         </View>
-                                        <View style={{flexDirection: 'column', alignItems: 'flex-start', flex: 1, marginLeft: 15, gap: 2,}}>
+                                        <View style={{flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start', flex: 1, marginLeft: 15, paddingRight: 15, gap: 2,}}>
                                             <Text style={styles.titleCita}>{cita.evento_agendado}</Text>
                                             <View style={{flexDirection: 'row', alignItems: 'center', gap: 5,}}>
                                                 <ClockIcon width={14} height={14} />
@@ -158,11 +178,11 @@ const MiAgenda = () => {
                                             </View>
                                             <View style={{flexDirection: 'row', alignItems: 'center', gap: 5,}}>
                                                 <DollarIcon width={14} height={14} />
-                                                <Text style={styles.text}>$1´500.000</Text>
+                                                <Text style={styles.text}>{formatearPrecio(cita.valor)}</Text>
                                             </View>
                                         </View>
-                                        <View style={{justifyContent: 'flex-start', alignItems: 'flex-end',}}>
-                                            <Text style={[styles.text, {color: '#404040',}]}>{cita.status === 'Cancelado' ? 'Cancelada': ''}</Text>
+                                        <View style={{height: '100%', alignItems: 'flex-end', paddingVertical: 7,}}>
+                                            <Text style={[styles.text, {color: '#404040',}]}>{cita.status === 'Cancelado' ? 'Cancelada': 'Finalizada'}</Text>
                                         </View>
                                     </View>
                                 )
@@ -242,7 +262,9 @@ const styles = StyleSheet.create({
     cita: {
         marginHorizontal: 16,
         flexDirection: 'row',
+        flex: 1,
         justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 15,
         marginBottom: 16,
         backgroundColor: 'white',
@@ -269,8 +291,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     cancelarBtn: {
-        marginTop: 30,
-        paddingVertical: 10,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',

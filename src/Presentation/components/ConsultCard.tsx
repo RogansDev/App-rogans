@@ -5,27 +5,20 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../../App';
 import { MyFont } from "../theme/AppTheme";
 import Icons from '../theme/Icons';
+import { useAppContext } from '../../../AppContext';
 
-interface CardType {
-  id: number;
-  title: string;
-  description: string;
-  duracion_cita: string;
-  precio: string;
-  image: any;
-  category?: string,
-}
-
-interface CardProps {
-  cards: CardType[];
-}
-
-const ConsultCard: React.FC<CardProps> = ({cards}) => {
+const ConsultCard = ({cards}: any) => {
 
   const { AgendarIcon } = Icons;
   
   const navigation = useNavigation<StackNavigationProp<RootStackParamsList>>();
 
+  const { selectedCard, setSelectedCard } = useAppContext();
+
+  const handleSelectCard = async (card: any) => {
+    setSelectedCard(card)
+    navigation.navigate('DescripcionConsultas');
+  };
 
   return (
     <ScrollView horizontal style={styles.cardContainer} showsHorizontalScrollIndicator={false}>
@@ -33,11 +26,11 @@ const ConsultCard: React.FC<CardProps> = ({cards}) => {
         id: Key | null | undefined; category?: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; image: ImageSourcePropType; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; 
       }) => (
         <View key={card.id} style={styles.card}>
-          <Text style={styles.cardCategory}>{card.category}</Text>
+          <View style={styles.overlay} />
           <Image source={card.image} style={styles.cardImage} />
           <Text style={styles.cardText}>{card.title}</Text>
           <TouchableOpacity 
-             onPress={() => navigation.navigate("DescripcionConsultas")} 
+             onPress={() => handleSelectCard(card)}
               style={styles.agendarBtn}
           >
             <Text style={styles.textAgendarBtn}>Agendar cita</Text>
@@ -79,11 +72,19 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     zIndex: 10,
   },
+  overlay: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    zIndex: 2,
+  },
   cardImage: {
     position: 'absolute',
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
+    zIndex: 1,
   },
   cardText: {
     position: 'relative',
