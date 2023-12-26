@@ -19,21 +19,22 @@ import expo.modules.ReactNativeHostWrapper;
 import java.util.List;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
+//import com.jerico2_1.Rogansapp.BuildConfig;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
     new ReactNativeHostWrapper(this, new DefaultReactNativeHost(this) {
-      @Override
+      /*@Override
       public boolean getUseDeveloperSupport() {
         return BuildConfig.DEBUG;
-      }
+      }*/
 
       @Override
       protected List<ReactPackage> getPackages() {
         @SuppressWarnings("UnnecessaryLocalVariable")
         List<ReactPackage> packages = new PackageList(this).getPackages();
         // Packages that cannot be autolinked yet can be added manually here, for example:
-        packages.add(new MyReactNativePackage());
         return packages;
       }
 
@@ -42,7 +43,7 @@ public class MainApplication extends Application implements ReactApplication {
         return ".expo/.virtual-metro-entry";
       }
 
-      @Override
+      /*@Override
       protected boolean isNewArchEnabled() {
         return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
       }
@@ -50,7 +51,7 @@ public class MainApplication extends Application implements ReactApplication {
       @Override
       protected Boolean isHermesEnabled() {
         return BuildConfig.IS_HERMES_ENABLED;
-      }
+      }*/
   });
 
   @Override
@@ -62,14 +63,14 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    if (!BuildConfig.REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS) {
+    /*if (!BuildConfig.REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS) {
       ReactFeatureFlags.unstable_useRuntimeSchedulerAlways = false;
     }
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       DefaultNewArchitectureEntryPoint.load();
-    }
-    ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+    }*/
+    // ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     ApplicationLifecycleDispatcher.onApplicationCreate(this);
   }
 

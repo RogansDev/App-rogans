@@ -11,6 +11,9 @@
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -19,13 +22,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/splash.png",
+        "foregroundImage": "./assets/adaptiveIcon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "scheme": "rogansya"
+    "scheme": "rogansya",
+    "extra": {
+      "eas": {
+        "projectId": "02a26e2a-0876-4bd7-9366-e202e709ccd5"
+      }
+    }
   }
 }

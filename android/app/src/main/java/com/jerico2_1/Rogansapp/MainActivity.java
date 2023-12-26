@@ -11,21 +11,15 @@ import org.devio.rn.splashscreen.SplashScreen;
 
 import expo.modules.ReactActivityDelegateWrapper;
 
+// import com.jerico2_1.Rogansapp.BuildConfig;
+
 public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // Set the theme to AppTheme BEFORE onCreate to support 
-    // coloring the background, status bar, and navigation bar.
-    // This is required for expo-splash-screen.
     setTheme(R.style.AppTheme);
-    super.onCreate(null);
-  }
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
     SplashScreen.show(this);
     super.onCreate(savedInstanceState);
-  }
+}
 
   /**
    * Returns the name of the main component registered from JavaScript.
@@ -43,12 +37,12 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
-    return new ReactActivityDelegateWrapper(this, BuildConfig.IS_NEW_ARCHITECTURE_ENABLED, new DefaultReactActivityDelegate(
+    /*return new ReactActivityDelegateWrapper(this, BuildConfig.IS_NEW_ARCHITECTURE_ENABLED, new DefaultReactActivityDelegate(
         this,
         getMainComponentName(),
         // If you opted-in for the New Architecture, we enable the Fabric Renderer.
         DefaultNewArchitectureEntryPoint.getFabricEnabled()));
-  }
+  }*/
 
   /**
    * Align the back button behavior with Android S
